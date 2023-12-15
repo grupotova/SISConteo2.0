@@ -1,0 +1,2472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PA_TOVA_SIB_InventariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AF_LOG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ActivoFijo" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="Base" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="AreaComercial" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ajustes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Hora" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdLocalizacion" Type="int" Nullable="false" />
+    <Property Name="IdTransaccion" Type="int" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="Marcado" Type="bit" />
+    <Property Name="ProveedorNacional" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Ajustes_Inventario_MERCH">
+    <Key>
+      <PropertyRef Name="id_ajuste" />
+    </Key>
+    <Property Name="id_ajuste" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_ajuste" Type="int" Nullable="false" />
+    <Property Name="id_tipo_conteo" Type="int" />
+    <Property Name="id_conteo" Type="varchar" MaxLength="20" />
+    <Property Name="base" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" />
+    <Property Name="usuario_crea" Type="varchar" MaxLength="20" />
+    <Property Name="total_monto" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="total_piezas" Type="int" />
+    <Property Name="cantidad_sku" Type="int" />
+    <Property Name="num_documento" Type="varchar" MaxLength="20" />
+    <Property Name="fecha_csv" Type="datetime" />
+    <Property Name="usuario_csv" Type="varchar" MaxLength="20" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="20" />
+    <Property Name="motivo" Type="varchar" MaxLength="5" />
+    <Property Name="Archivos_AjustesManuales_Id" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_SecuenciaArchivos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Ajustes_SecuenciaArchivos">
+    <Key>
+      <PropertyRef Name="num_documento" />
+      <PropertyRef Name="Fecha_Crea" />
+      <PropertyRef Name="Fecha_Mod" />
+    </Key>
+    <Property Name="num_documento" Type="int" Nullable="false" />
+    <Property Name="Fecha_Crea" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Crea" Type="varchar(max)" />
+    <Property Name="Fecha_Mod" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Mod" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="AjustesProveedoresNacionales">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAjuste" Type="int" Nullable="false" />
+    <Property Name="ProveedorNacional" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Archivos_AjustesManuales">
+    <Key>
+      <PropertyRef Name="Archivos_AjustesManuales_Id" />
+    </Key>
+    <Property Name="Archivos_AjustesManuales_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomArchivo" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="NomOrigArchivo" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Usuario_Carga" Type="int" Nullable="false" />
+    <Property Name="fecha_carga" Type="datetime" />
+    <Property Name="lineas_cargadas" Type="int" />
+    <Property Name="Base" Type="int" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="150" />
+    <Property Name="motivo" Type="varchar" MaxLength="5" />
+    <Property Name="id_ajuste" Type="int" />
+  </EntityType>
+  <EntityType Name="Archivos_ConteosManuales">
+    <Key>
+      <PropertyRef Name="Archivos_ConteosManuales_Id" />
+    </Key>
+    <Property Name="Archivos_ConteosManuales_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomArchivo" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="NomOrigArchivo" Type="varchar" MaxLength="254" Nullable="false" />
+    <Property Name="Usuario_Carga" Type="int" Nullable="false" />
+    <Property Name="fecha_carga" Type="datetime" />
+    <Property Name="lineas_cargadas" Type="int" />
+    <Property Name="Base" Type="int" />
+    <Property Name="CodDivision" Type="varchar" MaxLength="4" />
+    <Property Name="fecha_conteo" Type="datetime" />
+    <Property Name="ConteoDiario_ID" Type="int" />
+    <Property Name="grouping_label" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Bultos_Carga_Descarga_Posterior">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bulto" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="FechaCargaPosterior" Type="datetime" />
+    <Property Name="FechaDescargaPosterior" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BultosNoIdentificados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bulto" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Ctrlcarga" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Base" Type="int" />
+  </EntityType>
+  <EntityType Name="BultosSinMaestroArticulos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bulto" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Ctrlcarga" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="Referencia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Procesado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Ciclico_Producto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Producto_ID" Type="int" Nullable="false" />
+    <Property Name="Ubicacion_ID" Type="int" Nullable="false" />
+    <Property Name="Base_ID" Type="int" Nullable="false" />
+    <Property Name="Codigo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Auditoria" Type="bit" Nullable="false" />
+    <Property Name="Dispositivo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UsuarioCreador" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="Procesado" Type="bit" Nullable="false" />
+    <Property Name="FechaProcesado" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Ciclico_Ubicacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ubicacion_ID" Type="int" Nullable="false" />
+    <Property Name="Base_ID" Type="int" Nullable="false" />
+    <Property Name="Estatus_ID" Type="int" Nullable="false" />
+    <Property Name="Codigo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Auditoria" Type="bit" Nullable="false" />
+    <Property Name="Dispositivo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UsuarioCreador" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="Procesado" Type="bit" Nullable="false" />
+    <Property Name="FechaProcesado" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Ciclico_UbicacionCodigo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="UsuarioCreador" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ciclico_Zonificacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Base_ID" Type="int" Nullable="false" />
+    <Property Name="Documento_ID" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="Zona" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UsuarioCreador" Type="int" Nullable="false" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComplementosMuebleria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Referencia" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="ReferenciaMaster" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Marcado" Type="bit" />
+  </EntityType>
+  <EntityType Name="CondicionSugerencia_ConteoDiario">
+    <Key>
+      <PropertyRef Name="Id_Condicion" />
+    </Key>
+    <Property Name="Id_Condicion" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="Fec_Creacion" Type="datetime" />
+    <Property Name="Fec_Modificacion" Type="datetime" />
+    <Property Name="Usuario_Creador" Type="varchar" MaxLength="10" />
+    <Property Name="Usuario_Modificador" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ConteoCiclico">
+    <Key>
+      <PropertyRef Name="ConteoCiclico_Id" />
+    </Key>
+    <Property Name="ConteoCiclico_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Base_Id" Type="int" Nullable="false" />
+    <Property Name="Usuario_Id" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Fecha_Creada" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConteoCiclico_Auditoria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="50" />
+    <Property Name="TipoUbicacion" Type="varchar" MaxLength="1" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Hora" Type="char" MaxLength="5" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="Marcado" Type="bit" />
+    <Property Name="codigo_estilo" Type="varchar" MaxLength="20" />
+    <Property Name="sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="ajuste_conteo" Type="bit" />
+    <Property Name="comentario" Type="varchar" MaxLength="250" />
+    <Property Name="control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="estado" Type="smallint" Nullable="false" />
+    <Property Name="Producto_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConteoCiclico_Conteo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="50" />
+    <Property Name="TipoUbicacion" Type="varchar" MaxLength="1" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Hora" Type="char" MaxLength="5" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="Marcado" Type="bit" />
+    <Property Name="codigo_estilo" Type="varchar" MaxLength="20" />
+    <Property Name="sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="ajuste_conteo" Type="bit" />
+    <Property Name="comentario" Type="varchar" MaxLength="250" />
+    <Property Name="control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="estado" Type="smallint" Nullable="false" />
+    <Property Name="Producto_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConteoCiclico_DivisionesZonas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConteoCiclico_Id" Type="int" Nullable="false" />
+    <Property Name="Zona" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Tipo_Ubicacion" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="Usuario_Id" Type="int" Nullable="false" />
+    <Property Name="Fecha_Creada" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConteoCiclico_UpcNoExiste">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="50" />
+    <Property Name="TipoUbicacion" Type="varchar" MaxLength="1" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Hora" Type="char" MaxLength="5" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="Producto_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConteoDiario">
+    <Key>
+      <PropertyRef Name="ConteoDiario_ID" />
+    </Key>
+    <Property Name="ConteoDiario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="CodDivision" Type="varchar" MaxLength="4" />
+    <Property Name="fecha_conteo" Type="datetime" Nullable="false" />
+    <Property Name="cant_usuarios" Type="int" />
+    <Property Name="upc_x_usuario" Type="int" />
+    <Property Name="Fecha_Crea" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Crea" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha_Mod" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Mod" Type="varchar" MaxLength="20" />
+    <Property Name="Id_Condicion" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Fecha_Status" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Status" Type="varchar" MaxLength="20" />
+    <Property Name="origen" Type="int" Nullable="false" />
+    <Property Name="en_uso" Type="bit" />
+    <Property Name="fecha_en_uso" Type="datetime" />
+    <Property Name="Usuario_Actual" Type="varchar" MaxLength="20" />
+    <Property Name="grouping_label" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ConteoDiario_Analisis">
+    <Key>
+      <PropertyRef Name="ConteoDiario_Analisis_ID" />
+    </Key>
+    <Property Name="ConteoDiario_Analisis_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConteoDiario_ID" Type="int" Nullable="false" />
+    <Property Name="sku_id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="inventario_teorico" Type="int" />
+    <Property Name="contado" Type="int" />
+    <Property Name="contado_final" Type="int" />
+    <Property Name="aplicar_ajuste" Type="bit" />
+    <Property Name="motivo_ajuste" Type="varchar" MaxLength="10" />
+    <Property Name="comentario" Type="varchar(max)" />
+    <Property Name="Fecha_Crea" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Crea" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha_Mod" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Mod" Type="varchar" MaxLength="20" />
+    <Property Name="procesado" Type="bit" />
+    <Property Name="Fecha_Proc" Type="datetime" />
+    <Property Name="Usuario_Proc" Type="varchar" MaxLength="20" />
+    <Property Name="diferencia" Type="int" StoreGeneratedPattern="Computed" />
+    <Property Name="diferencia_final" Type="int" StoreGeneratedPattern="Computed" />
+    <Property Name="tot_costo_teorico" Type="decimal" Precision="14" Scale="2" />
+    <Property Name="costo_promedio" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="contado_final_analisis" Type="int" />
+    <Property Name="aplicar_ajuste_analisis" Type="bit" />
+    <Property Name="motivo_ajuste_analisis" Type="varchar" MaxLength="10" />
+    <Property Name="comentario_analisis" Type="varchar(max)" />
+    <Property Name="contado_final_aprobacion" Type="int" />
+    <Property Name="aplicar_ajuste_aprobacion" Type="bit" />
+    <Property Name="motivo_ajuste_aprobacion" Type="varchar" MaxLength="10" />
+    <Property Name="comentario_aprobacion" Type="varchar(max)" />
+    <Property Name="diferencia_final_analisis" Type="int" StoreGeneratedPattern="Computed" />
+    <Property Name="diferencia_final_aprobacion" Type="int" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="ConteoDiario_Detalle">
+    <Key>
+      <PropertyRef Name="ConteoDiario_Detalle_ID" />
+    </Key>
+    <Property Name="ConteoDiario_Detalle_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConteoDiario_ID" Type="int" Nullable="false" />
+    <Property Name="sku_id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="condicion" Type="varchar(max)" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="tot_disponible" Type="int" />
+    <Property Name="tot_costo" Type="decimal" Precision="14" Scale="2" />
+    <Property Name="Fec_UltEntrada" Type="datetime" />
+    <Property Name="Fec_UltVenta" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ConteoDiario_DetGruposAprobacionAjustes">
+    <Key>
+      <PropertyRef Name="Id_Grupo" />
+      <PropertyRef Name="Rol_ID" />
+    </Key>
+    <Property Name="Id_Grupo" Type="int" Nullable="false" />
+    <Property Name="Rol_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConteoDiario_GruposAprobacionAjustes">
+    <Key>
+      <PropertyRef Name="Id_Grupo" />
+    </Key>
+    <Property Name="Id_Grupo" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Comentarios" Type="varchar(max)" />
+    <Property Name="monto_min" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="monto_max" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="Fecha_Crea" Type="datetime" />
+    <Property Name="Usuario_Crea" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha_Mod" Type="datetime" />
+    <Property Name="Usuario_Mod" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Control_Inv_EstilosTmp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="document_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="style_id" Type="decimal" Precision="12" Scale="0" />
+    <Property Name="style_code" Type="nvarchar" MaxLength="20" />
+    <Property Name="long_desc" Type="nvarchar" MaxLength="120" />
+    <Property Name="size" Type="nvarchar" MaxLength="17" />
+    <Property Name="color" Type="nvarchar" MaxLength="20" />
+    <Property Name="marca" Type="nvarchar" MaxLength="20" />
+    <Property Name="hie_group_code_style" Type="nvarchar" MaxLength="20" />
+    <Property Name="hie_group_style_label" Type="nvarchar" MaxLength="40" />
+    <Property Name="hierarchy_group_code_Doc" Type="nvarchar" MaxLength="20" />
+    <Property Name="hie_group_Doc_label" Type="nvarchar" MaxLength="40" />
+    <Property Name="location_id" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Control_Inv_Upc_SinDoc">
+    <Key>
+      <PropertyRef Name="sd_id" />
+    </Key>
+    <Property Name="sd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sd_control_inventario" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="sd_fecha_contado" Type="date" />
+    <Property Name="sd_base" Type="int" />
+    <Property Name="sd_estilo" Type="nvarchar" MaxLength="20" />
+    <Property Name="sd_sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="sd_upc" Type="nvarchar" MaxLength="14" />
+    <Property Name="sd_cantidad_contada" Type="int" />
+    <Property Name="sd_comentario" Type="nvarchar" MaxLength="250" />
+    <Property Name="sd_usuario_proceso" Type="nvarchar" MaxLength="14" />
+    <Property Name="sd_fecha_proceso" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_Documentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="localizacion" Type="smallint" Nullable="false" />
+    <Property Name="base" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" />
+    <Property Name="fecha_conteo" Type="datetime" />
+    <Property Name="id_tipo_conteo" Type="int" Nullable="false" />
+    <Property Name="fecha_limite_proceso" Type="datetime" />
+    <Property Name="Usuario_Crea" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha_Mod" Type="datetime" />
+    <Property Name="Usuario_Mod" Type="varchar" MaxLength="20" />
+    <Property Name="Estado" Type="int" />
+    <Property Name="Fecha_Estado" Type="datetime" />
+    <Property Name="Usuario_Estado" Type="varchar" MaxLength="20" />
+    <Property Name="sw_lock" Type="bit" />
+    <Property Name="fecha_lock" Type="datetime" />
+    <Property Name="Usuario_lock" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_Estados">
+    <Key>
+      <PropertyRef Name="cie_id" />
+    </Key>
+    <Property Name="cie_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cie_estados_inventario" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_Sku">
+    <Key>
+      <PropertyRef Name="cis_id" />
+    </Key>
+    <Property Name="cis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cis_control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_localizacion" Type="smallint" Nullable="false" />
+    <Property Name="cis_base" Type="int" Nullable="false" />
+    <Property Name="cis_sku_id" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+    <Property Name="cis_estilo_id" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="cis_estilo_cod" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_estilo_desc" Type="nvarchar" MaxLength="120" />
+    <Property Name="cis_talla" Type="nvarchar" MaxLength="17" />
+    <Property Name="cis_color" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_marca" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_hcod_grupo_estilo" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_hcod_grupo_estilo_desc" Type="nvarchar" MaxLength="40" />
+    <Property Name="cis_hcod_grupo_doc" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_hcod_grupo_doc_desc" Type="nvarchar" MaxLength="40" />
+    <Property Name="cis_inventario_teorico" Type="int" />
+    <Property Name="cis_costo" Type="decimal" Precision="14" Scale="2" />
+    <Property Name="cis_fecha_creacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_TiposAjustes">
+    <Key>
+      <PropertyRef Name="id_tipo_ajuste" />
+    </Key>
+    <Property Name="id_tipo_ajuste" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_TiposConteo">
+    <Key>
+      <PropertyRef Name="id_tipo_conteo" />
+    </Key>
+    <Property Name="id_tipo_conteo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="max_dias_proceso" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_Upc">
+    <Key>
+      <PropertyRef Name="ciu_id" />
+    </Key>
+    <Property Name="ciu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ciu_control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="ciu_localizacion" Type="smallint" />
+    <Property Name="ciu_base" Type="int" Nullable="false" />
+    <Property Name="ciu_sku_id" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+    <Property Name="ciu_upc" Type="nvarchar" MaxLength="14" />
+    <Property Name="ciu_cantidad_conteo" Type="int" />
+    <Property Name="ciu_cantidad_conteo_mod" Type="int" />
+    <Property Name="ciu_comentario" Type="nvarchar" MaxLength="250" />
+    <Property Name="ciu_usuario_proceso" Type="nvarchar" MaxLength="14" />
+    <Property Name="ciu_fecha_proceso" Type="datetime" />
+    <Property Name="ciu_usuario_mod" Type="nvarchar" MaxLength="14" />
+    <Property Name="ciu_fecha_mod" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ControlesCargaEnviados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ctrlcarga" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DepartamentosZonas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Departamento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Zona" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DepositoPiso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="Marcado" Type="bit" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Comentario" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Detalle_Ajustes_Inventario_MERCH">
+    <Key>
+      <PropertyRef Name="id_ajuste_detalle" />
+    </Key>
+    <Property Name="id_ajuste_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_ajuste" Type="int" Nullable="false" />
+    <Property Name="sku_id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="units" Type="int" Nullable="false" />
+    <Property Name="costo_promedio" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Detalle_Archivos_AjustesManuales">
+    <Key>
+      <PropertyRef Name="Detalle_Archivos_AjustesManuales_Id" />
+    </Key>
+    <Property Name="Detalle_Archivos_AjustesManuales_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Archivos_AjustesManuales_Id" Type="int" Nullable="false" />
+    <Property Name="UPC" Type="varchar(max)" />
+    <Property Name="PIEZAS" Type="int" />
+    <Property Name="Base" Type="int" />
+    <Property Name="ESTILO" Type="varchar" MaxLength="55" />
+    <Property Name="COLOR" Type="varchar" MaxLength="55" />
+    <Property Name="TALLA" Type="varchar" MaxLength="55" />
+  </EntityType>
+  <EntityType Name="Detalle_Archivos_ConteosManuales">
+    <Key>
+      <PropertyRef Name="Detalle_Archivos_ConteosManuales_Id" />
+    </Key>
+    <Property Name="Detalle_Archivos_ConteosManuales_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Archivos_ConteosManuales_Id" Type="int" Nullable="false" />
+    <Property Name="UPC" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="DivisionesZonas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Division" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Zona" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EntradasTemporales">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="FuenteEntrada" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Es_Pedido" Type="bit" />
+    <Property Name="No_Pedido" Type="int" />
+    <Property Name="Marcado" Type="bit" />
+    <Property Name="NoEntrada" Type="int" />
+    <Property Name="No_camion" Type="nchar" MaxLength="6" />
+    <Property Name="Movtransp" Type="nchar" MaxLength="10" />
+    <Property Name="Ctrlcarga" Type="nchar" MaxLength="10" />
+    <Property Name="Bto_cons" Type="nchar" MaxLength="20" />
+    <Property Name="Bulto" Type="nchar" MaxLength="30" />
+    <Property Name="Referencia" Type="nchar" MaxLength="20" />
+    <Property Name="Id_Usuario" Type="int" />
+    <Property Name="FechaCarga" Type="datetime" />
+    <Property Name="Descargado" Type="bit" />
+    <Property Name="Numlinea" Type="nchar" MaxLength="30" />
+    <Property Name="Pedido" Type="int" />
+  </EntityType>
+  <EntityType Name="EntradasTemporalesAutorizaciones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEntradaTemporal" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Causa" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Observacion" Type="varchar" MaxLength="150" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EntradasTemporalesCalculos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="FuenteEntrada" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Es_Pedido" Type="bit" />
+    <Property Name="No_Pedido" Type="int" />
+  </EntityType>
+  <EntityType Name="Estatus_ConteoDiario">
+    <Key>
+      <PropertyRef Name="EstatusConteoDiario_ID" />
+    </Key>
+    <Property Name="EstatusConteoDiario_ID" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="Fec_Creacion" Type="datetime" />
+    <Property Name="Fec_Modificacion" Type="datetime" />
+    <Property Name="Usuario_Creador" Type="varchar" MaxLength="10" />
+    <Property Name="Usuario_Modificador" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Estatus_TareasConteoDiario">
+    <Key>
+      <PropertyRef Name="EstatusTareasConteoDiario_ID" />
+    </Key>
+    <Property Name="EstatusTareasConteoDiario_ID" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="Fec_Creacion" Type="datetime" />
+    <Property Name="Fec_Modificacion" Type="datetime" />
+    <Property Name="Usuario_Creador" Type="varchar" MaxLength="10" />
+    <Property Name="Usuario_Modificador" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Inventario_Conteo">
+    <Key>
+      <PropertyRef Name="Inventario_Conteo_Id" />
+    </Key>
+    <Property Name="Inventario_Conteo_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="Fecha_Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Fecha_Fin" Type="datetime" Nullable="false" />
+    <Property Name="tipo_ubicacion" Type="varchar" MaxLength="2" />
+    <Property Name="ubicacion" Type="varchar" MaxLength="50" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="style_code" Type="varchar" MaxLength="20" />
+    <Property Name="sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="id_tipo_conteo" Type="int" />
+    <Property Name="documento_conteo" Type="int" />
+    <Property Name="ajuste_conteo" Type="bit" />
+    <Property Name="comentario" Type="varchar" MaxLength="250" />
+    <Property Name="estado" Type="smallint" Nullable="false" />
+    <Property Name="Fecha_Crea" Type="datetime" />
+    <Property Name="Usuario_Crea" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha_Mod" Type="datetime" />
+    <Property Name="Usuario_Mod" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha_Estado" Type="datetime" />
+    <Property Name="Usuario_Estado" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Inventario_DetalleConteo">
+    <Key>
+      <PropertyRef Name="Inventario_DetalleConteo_Id" />
+    </Key>
+    <Property Name="Inventario_DetalleConteo_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Inventario_Conteo_Id" Type="int" Nullable="false" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="tipo_ubicacion" Type="varchar" MaxLength="2" />
+    <Property Name="ubicacion" Type="varchar" MaxLength="50" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="style_code" Type="varchar" MaxLength="20" />
+    <Property Name="sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="IdUsuario" Type="varchar" MaxLength="20" />
+    <Property Name="mensaje" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="InventarioAntesTomaStevens">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="IdDepartamento" Type="int" Nullable="false" />
+    <Property Name="Entradas" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Salidas" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventarioAntesTomaStevensCaja">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventarioDeposito">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identificador" Type="varchar" MaxLength="50" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Hora" Type="char" MaxLength="5" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="Marcado" Type="bit" />
+    <Property Name="IdTransaccion" Type="int" />
+    <Property Name="codigo_estilo" Type="varchar" MaxLength="20" />
+    <Property Name="sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="ajuste_conteo" Type="bit" />
+    <Property Name="comentario" Type="varchar" MaxLength="250" />
+    <Property Name="control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="estado" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventarioPiso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identificador" Type="varchar" MaxLength="50" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Hora" Type="char" MaxLength="5" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="Marcado" Type="bit" />
+    <Property Name="IdTransaccion" Type="int" />
+    <Property Name="codigo_estilo" Type="varchar" MaxLength="20" />
+    <Property Name="sku_id" Type="decimal" Precision="13" Scale="0" />
+    <Property Name="ajuste_conteo" Type="bit" />
+    <Property Name="comentario" Type="varchar" MaxLength="250" />
+    <Property Name="control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="estado" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JerarquiasMERCH">
+    <Key>
+      <PropertyRef Name="ID_JERARQUIA_MERCH" />
+    </Key>
+    <Property Name="COD_DIVISION" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESC_DIVISION" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="COD_DEPARTAMENTO" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESC_DEPARTAMENTO" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="COD_CLASE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESC_CLASE" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="COD_SUBCLASE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DESC_SUBCLASE" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ID_JERARQUIA_MERCH" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogGeneracion_Tareas_ConteoDiario">
+    <Key>
+      <PropertyRef Name="LogGeneracion_Tareas_ConteoDiario_ID" />
+    </Key>
+    <Property Name="LogGeneracion_Tareas_ConteoDiario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fec_Ini" Type="datetime" />
+    <Property Name="Fec_Fin" Type="datetime" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Cantidad_Tareas" Type="int" />
+    <Property Name="fecha_conteo" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Mermas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Hora" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdLocalizacion" Type="int" Nullable="false" />
+    <Property Name="IdTransaccion" Type="int" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="Marcado" Type="bit" />
+  </EntityType>
+  <EntityType Name="MotivosAjustes_ConteoDiario">
+    <Key>
+      <PropertyRef Name="Id_Motivo" />
+    </Key>
+    <Property Name="Id_Motivo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="255" />
+    <Property Name="Fec_Creacion" Type="datetime" />
+    <Property Name="Fec_Modificacion" Type="datetime" />
+    <Property Name="Usuario_Creador" Type="varchar" MaxLength="10" />
+    <Property Name="Usuario_Modificador" Type="varchar" MaxLength="10" />
+    <Property Name="bln_analisis" Type="bit" />
+    <Property Name="bln_aprobacion" Type="bit" />
+  </EntityType>
+  <EntityType Name="param_condicion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="10" />
+    <Property Name="Valor1" Type="int" />
+  </EntityType>
+  <EntityType Name="Parametros_Sugerencia_Conteo_Diario">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="TipoDato" Type="int" />
+    <Property Name="Valor" Type="varchar(max)" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+    <Property Name="Fec_Creacion" Type="datetime" />
+    <Property Name="Fec_Modificacion" Type="datetime" />
+    <Property Name="Usuario_Creador" Type="varchar" MaxLength="10" />
+    <Property Name="Usuario_Modificador" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="RegistroAuditorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identificador" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CantidadAjustada" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuarioAutoriza" Type="int" Nullable="false" />
+    <Property Name="IdUsuarioAuditado" Type="int" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tareas_ConteoDiario">
+    <Key>
+      <PropertyRef Name="Tareas_ConteoDiario_ID" />
+    </Key>
+    <Property Name="Tareas_ConteoDiario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConteoDiario_ID" Type="int" Nullable="false" />
+    <Property Name="Base" Type="int" Nullable="false" />
+    <Property Name="style_id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="style_code" Type="varchar" MaxLength="20" />
+    <Property Name="LogGeneracion_Tareas_ConteoDiario_ID" Type="int" />
+    <Property Name="Fecha_Crea" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Crea" Type="varchar" MaxLength="20" />
+    <Property Name="Fecha_Mod" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Mod" Type="varchar" MaxLength="20" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Fecha_Status" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Status" Type="varchar" MaxLength="20" />
+    <Property Name="tipo_ubicacion" Type="varchar" MaxLength="2" />
+    <Property Name="en_uso" Type="bit" />
+    <Property Name="Fecha_Asignado" Type="datetime" />
+    <Property Name="Usuario_Asignado" Type="varchar" MaxLength="20" />
+    <Property Name="origen" Type="int" Nullable="false" />
+    <Property Name="prioridad" Type="int" Nullable="false" />
+    <Property Name="ubicacion" Type="varchar" MaxLength="50" />
+    <Property Name="tarea_omitida" Type="bit" />
+    <Property Name="Motivo_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Tareas_Motivos">
+    <Key>
+      <PropertyRef Name="Motivo_ID" />
+    </Key>
+    <Property Name="Motivo_ID" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransaccionesVentasNoMarcadas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Marcado" Type="bit" />
+  </EntityType>
+  <EntityType Name="UbicacionesTerminadas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Marcado" Type="bit" />
+  </EntityType>
+  <EntityType Name="VentasNoProcesadas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTransaccionDet" Type="int" Nullable="false" />
+    <Property Name="CodigoBarra" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Departamento" Type="int" Nullable="false" />
+    <Property Name="Referencia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CodigoLigado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="FechaProceso" Type="datetime" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="HoraFin" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="IdAccion" Type="int" Nullable="false" />
+    <Property Name="IdBase" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentasNoProcesadas_Acciones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentasNoProcesadas_Recorrido">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdAccion" Type="int" Nullable="false" />
+    <Property Name="IdTransaccionDet" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Function Name="Bultos_Carga_Descarga_PosteriorInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+    <Parameter Name="fechacarga" Type="datetime" Mode="In" />
+    <Parameter Name="fechadescarga" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Cargar_Archivos_AjustesManuales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="NomArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NomOrigArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Base" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="motivo" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="Ajuste_ID" Type="int" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="Cargar_Archivos_AjustesManuales_original" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="NomArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NomOrigArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Base" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="motivo" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="Ajuste_ID" Type="int" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="Cargar_Archivos_AjustesManuales_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="NomArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NomOrigArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Base" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="motivo" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="Ajuste_ID" Type="int" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="Cargar_Archivos_ConteosManuales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="NomArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NomOrigArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Base" Type="int" Mode="In" />
+    <Parameter Name="Fecha_Conteo" Type="datetime" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="Cargar_Archivos_ConteosManuales_UPC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="NomArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NomOrigArchivo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Base" Type="int" Mode="In" />
+    <Parameter Name="Fecha_Conteo" Type="datetime" Mode="In" />
+    <Parameter Name="Cod_Division" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ciclicoUpdateStatus_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="ciclicoUpdateStatus " />
+  <Function Name="ConteoDiario_Analisis_ActualizarConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Cambiar_Fecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Cambiar_Status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="nuevo_status" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Cancelar_ById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Cancelar_DocsVencidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ConteoDiario_Cerrar_ById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Crear_Tarea_Manual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="tipo_ubicacion" Type="varchar" Mode="In" />
+    <Parameter Name="upc" Type="varchar" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Crear_TareasById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Crear_TareasById_Old" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_Crear_TareasProgramadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha_Conteo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ConteoDiario_Crear_TareasProgramadas_Old" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha_Conteo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ConteoDiario_LiberarDocsEnUso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ConteoDiario_LiberarTareasPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ConteoDiario_SetReadyToClose_ById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="ConteoDiario_TerminarAnalisis_ById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="FN_BuscarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="login" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_ConteoDiario_CostoPromedio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="skuid" Type="decimal" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_ConteoDiario_CostosxDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ConteoDiario_ID" Type="int" Nullable="false" />
+          <Property Name="pzs_teorico" Type="int" />
+          <Property Name="costo_teorico" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="pzs_contadas" Type="int" />
+          <Property Name="costo_contado" Type="decimal" Precision="38" Scale="4" />
+          <Property Name="pzs_diferencia" Type="int" />
+          <Property Name="costo_diferencia" Type="decimal" Precision="38" Scale="4" />
+          <Property Name="pzs_ajuste" Type="int" />
+          <Property Name="costo_ajuste" Type="decimal" Precision="38" Scale="4" />
+          <Property Name="abs_costo_ajuste" Type="decimal" Precision="38" Scale="4" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_ConteoDiario_TotalUnits_MovMERCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="skuid" Type="decimal" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="fec_desde" Type="datetime" Mode="In" />
+    <Parameter Name="fec_hasta" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fn_dialimite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="date">
+    <Parameter Name="doccontrol" Type="nvarchar" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="codigo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fn_GetBasesXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="IdBase" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="38" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_InfoConteo_SkuDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="sku_id" Type="decimal" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ConteoDiario_ID" Type="int" Nullable="false" />
+          <Property Name="sku_id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha_FinConteo" Type="datetime" />
+          <Property Name="Usuario_Conteo" Type="varchar" MaxLength="20" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_MERCH_DatosUltimaEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="sku_id" Type="decimal" Mode="In" />
+    <Parameter Name="sw_proveedor" Type="bit" Mode="In" />
+    <Parameter Name="sw_B0" Type="bit" Mode="In" />
+    <Parameter Name="sw_transferencia" Type="bit" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="SKUID" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+          <Property Name="BASE" Type="int" Nullable="false" />
+          <Property Name="TIPO_ENTRADA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+          <Property Name="PIEZAS_RECIBIDAS" Type="int" Nullable="false" />
+          <Property Name="DOCUMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_VerificaEstadoInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="doccontrol" Type="nvarchar" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="estado" Type="int" Mode="In" />
+    <Parameter Name="ajusteconteo" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="fn_VerificaUPCExistePD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="doccontrol" Type="int" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="upc" Type="nvarchar" Mode="In" />
+    <Parameter Name="PisoDeposito" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fnObtenerUbicacion_TareaConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="Base" Type="int" Mode="In" />
+    <Parameter Name="style_code" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ImportarEntradaET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="entrada" Type="int" Mode="In" />
+  </Function>
+  <Function Name="OLD_sp_ConteoDiario_por_Aprobar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <Parameter Name="Base" Type="varchar" Mode="In" />
+    <Parameter Name="ConteoDiario_ID" Type="varchar" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="FecConteo_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecConteo_fin" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_fin" Type="datetime" Mode="In" />
+    <Parameter Name="CodDivision" Type="varchar(max)" Mode="In" />
+    <Parameter Name="upc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CodEstilo" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Procesa_Conteos_InvInicialPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="query_sop_68986" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fd" Type="varchar" Mode="In" />
+    <Parameter Name="fh" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_Buscar_ConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <Parameter Name="Base" Type="varchar" Mode="In" />
+    <Parameter Name="ConteoDiario_ID" Type="varchar" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="FecConteo_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecConteo_fin" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_fin" Type="datetime" Mode="In" />
+    <Parameter Name="CodDivision" Type="varchar(max)" Mode="In" />
+    <Parameter Name="upc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CodEstilo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="DocEstatus" Type="varchar(max)" Mode="In" />
+    <Parameter Name="DocOrigen" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_BuscarUpcenFoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="documento" Type="int" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="upc" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_BuscarUpcenFotoPDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="upc" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_CalculoEspecial_InvInicialPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_CalculoEspecial_InvInicialPiso_01" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_CargarJerarquiasMerch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ConsultaConteoGenerado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsultaConteoGenerado_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsultaConteoNOGenerado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsultadeDiferencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsultaModificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsultaModificaciones_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsultaNoSurtidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConteoDetallePorUbicacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConteoDiario_Detalle_MovMERCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="skuid" Type="decimal" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="str_desde" Type="varchar(max)" Mode="In" />
+    <Parameter Name="str_hasta" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_ConteoDiario_Liberar_ByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Usuario" Type="varchar(max)" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_Analizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <Parameter Name="Base" Type="varchar" Mode="In" />
+    <Parameter Name="ConteoDiario_ID" Type="varchar" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="FecConteo_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecConteo_fin" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_fin" Type="datetime" Mode="In" />
+    <Parameter Name="CodDivision" Type="varchar(max)" Mode="In" />
+    <Parameter Name="upc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CodEstilo" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_Analizar_Asignar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar(max)" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_Analizar_Liberar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_Id" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar(max)" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_Aprobar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <Parameter Name="Base" Type="varchar" Mode="In" />
+    <Parameter Name="ConteoDiario_ID" Type="varchar" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="FecConteo_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecConteo_fin" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_fin" Type="datetime" Mode="In" />
+    <Parameter Name="CodDivision" Type="varchar(max)" Mode="In" />
+    <Parameter Name="upc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CodEstilo" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_Aprobar_Asignar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar(max)" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_Aprobar_Liberar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_Id" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar(max)" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_AprobarMinMax" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <Parameter Name="Base" Type="varchar" Mode="In" />
+    <Parameter Name="ConteoDiario_ID" Type="varchar" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="FecConteo_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecConteo_fin" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_fin" Type="datetime" Mode="In" />
+    <Parameter Name="CodDivision" Type="varchar(max)" Mode="In" />
+    <Parameter Name="upc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CodEstilo" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_ConteoDiario_por_Cerrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <Parameter Name="Base" Type="varchar" Mode="In" />
+    <Parameter Name="ConteoDiario_ID" Type="varchar" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="FecConteo_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecConteo_fin" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecCreacion_fin" Type="datetime" Mode="In" />
+    <Parameter Name="CodDivision" Type="varchar(max)" Mode="In" />
+    <Parameter Name="upc" Type="varchar(max)" Mode="In" />
+    <Parameter Name="CodEstilo" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_ConteoResumen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Control_Inv_Upc_SinDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Control_Inventario_UpdAjuste" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Control_Inventario_UpdAjuste_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Control_Inventario_UpdConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Control_Inventario_UpdConteo_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ControlesInvInicialPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Crear_ConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha_Conteo" Type="datetime" Mode="In" />
+    <Parameter Name="Cod_Division" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Condicion" Type="int" Mode="In" />
+    <Parameter Name="Cant_Usuarios" Type="int" Mode="In" />
+    <Parameter Name="Upc_x_Usuario" Type="int" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="grouping_label" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_DetalleSeguimientoConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_DetalleSeguimientoConteo_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_DetalleUpcSinTeorico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Doc_Control_GenerarArchivoSku" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="documento" Type="int" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Doc_Control_GenerarArchivoUpc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="documento" Type="int" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetData_Analisis_ConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetData_Aprobacion_ConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetDetail_Ajuste_CSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ajuste_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetDetail_ConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetHeader_Ajuste_CSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ajuste_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetHeader_ConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetSecuenciaArchivo_Ajustes_Inventario_MERCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="num_documento" Type="int" Mode="InOut" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_Grabar_Analisis_ConteoDiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="ConteoDiario_Analisis_ID" Type="int" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="ajustar" Type="bit" Mode="In" />
+    <Parameter Name="motivo" Type="varchar" Mode="In" />
+    <Parameter Name="comentario" Type="varchar(max)" Mode="In" />
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="mensaje_error" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InventarioCalculado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DocInventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_nuevo_AnalisisConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="conteo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Obtener_Conteos_a_Modificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+    <Parameter Name="skuid" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_Obtener_Conteos_Total" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+    <Parameter Name="skuid" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="sp_ObtenerInvInicialPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PorcCostoPisoDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PorcCostoPisoDeposito_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PorcentajeNoSurtidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Rep_ConteosDiarios_Cerrados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FecConteo_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecConteo_fin" Type="datetime" Mode="In" />
+    <Parameter Name="FecCierre_ini" Type="datetime" Mode="In" />
+    <Parameter Name="FecCierre_fin" Type="datetime" Mode="In" />
+    <Parameter Name="ConteoDiario_ID" Type="int" Mode="In" />
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_RepUbicacionesInv0MERCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_SeguimientoConteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_SeguimientoConteo_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Sugerir_Conteo_Diario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prmFConteo" Type="datetime" Mode="In" />
+    <Parameter Name="prmDivision" Type="varchar" Mode="In" />
+    <Parameter Name="prmCondicion" Type="int" Mode="In" />
+    <Parameter Name="prmCantUsers" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_UbicacionesSku_ConteoDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="DocInventario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_UpcSinTeorico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_UPDATE_STATISTICS_Inventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spAjustesEliminarHaceUnaSemana" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spAjustesPDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAjustesPDT1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spAjustesProveedoresNacionalesInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idajuste" Type="int" Mode="In" />
+    <Parameter Name="proveedor" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spAppAdminConteoDiarioPorBaseId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppAdminConteoDiarioTareasLiberarPorTareaId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppAdminConteoDiarioTareasLiberarPorTareaIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TareaConteoDiarioIds" Type="varchar(max)" Mode="In" />
+    <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppAdminConteoDiarioTareasPorConteoDiarioId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoCiclico_Conteo_INS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoCiclicoId" Type="int" Mode="In" />
+    <Parameter Name="UPC" Type="varchar" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoCiclico_DivisionesZonas_INS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoCiclicoId" Type="int" Mode="In" />
+    <Parameter Name="Zona" Type="varchar" Mode="In" />
+    <Parameter Name="Ubicacion" Type="varchar" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar" Mode="In" />
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoCiclicoPorBaseId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiario_INS_Conteo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FormaConteo" Type="varchar" Mode="In" />
+    <Parameter Name="UPC" Type="varchar" Mode="In" />
+    <Parameter Name="SkuId" Type="decimal" Mode="In" />
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="TipoIdConteo" Type="int" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar" Mode="In" />
+    <Parameter Name="Ubicacion" Type="varchar" Mode="In" />
+    <Parameter Name="Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="TipoError" Type="int" Mode="InOut" />
+    <Parameter Name="MensajeError" Type="varchar(max)" Mode="InOut" />
+    <Parameter Name="OUT_Talla" Type="varchar" Mode="InOut" />
+    <Parameter Name="OUT_Color" Type="varchar" Mode="InOut" />
+    <Parameter Name="OUT_Cantidad" Type="decimal" Mode="InOut" />
+    <Parameter Name="OUT_SkuId" Type="decimal" Mode="InOut" />
+    <Parameter Name="OUT_TotalContadoPorEstilo" Type="decimal" Mode="InOut" />
+    <Parameter Name="OUT_UPCExiste" Type="bit" Mode="InOut" />
+    <Parameter Name="OUT_DiferenciasCantidadUbicaciones" Type="int" Mode="InOut" />
+    <Parameter Name="OUT_DiferenciasCantidadConteo" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="spAppConteoDiario_INS_Conteo_EXEC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FormaConteo" Type="varchar" Mode="In" />
+    <Parameter Name="UPC" Type="varchar" Mode="In" />
+    <Parameter Name="SkuId" Type="decimal" Mode="In" />
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="TipoIdConteo" Type="int" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar" Mode="In" />
+    <Parameter Name="Ubicacion" Type="varchar" Mode="In" />
+    <Parameter Name="Cantidad" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioCrearTarea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar" Mode="In" />
+    <Parameter Name="UPC" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioEstiloTovaPorTareaId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioPorBaseId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioTareaCambiarEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TipoOperacion" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="OK" Type="bit" Mode="InOut" />
+    <Parameter Name="MensajeError" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="spAppConteoDiarioTareaCambiarEstado_EXEC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TipoOperacion" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioTareasLiberarPorUsuarioId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioTareasPorConteoDiarioId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="UsuarioAsignado" Type="varchar" Mode="In" />
+    <Parameter Name="TipoUbicacion" Type="varchar" Mode="In" />
+    <Parameter Name="OrdenRegistro" Type="varchar" Mode="In" />
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioUbicacion_DEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+    <Parameter Name="SkuId" Type="decimal" Mode="In" />
+    <Parameter Name="Ubicacion" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioUbicacion_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TipoDatos" Type="varchar" Mode="In" />
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+    <Parameter Name="SkuId" Type="decimal" Mode="In" />
+    <Parameter Name="EstiloTovaId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioUbicacion_INS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+    <Parameter Name="SkuId" Type="decimal" Mode="In" />
+    <Parameter Name="Ubicacion" Type="varchar" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioUPCporSku" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SkuId" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoDiarioValidarUPC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Upc" Type="varchar" Mode="In" />
+    <Parameter Name="TareaDeConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoFinalizadosActualizarTareaId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="TareaConteoDiarioId" Type="int" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+    <Parameter Name="UsuarioAsignado" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spAppConteoFinalizadosValidarUPC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Upc" Type="varchar" Mode="In" />
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spAppVPreciosObtenerPrecio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UPC" Type="varchar(max)" Mode="In" />
+    <Parameter Name="BaseId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spB0VsSIB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spBultos_Carga_Descarga_PosteriorConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spBultosNoIdentificadosActualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spBultosNoIdentificadosEliminarSinCarga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spBultosNoIdentificadosInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spBultosNoIdentificadosPorControl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spBultosNoIdentificadosPorControlEntreFechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spBultosSinMaestroArticulosInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="referencia" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spBultosSinMaestroArticulosMarcarPorBulto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spBultosSinMaestroArticulosPorBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spCantidadGuardadaEnDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spCantidadGuardadaEnPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spComplementosMuebleriaInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbar" Type="varchar" Mode="In" />
+    <Parameter Name="refe" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="refmas" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spConsistenciaIdentificadorDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spConsistenciaIdentificadorPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spConsultarAvanceAuditoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spConsultarAvanceInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spConteosConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+    <Parameter Name="ubicacion" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spControlesCargaEnviadosConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spControlesCargaEnviadosInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spCostoInventarioBaseDepartamentoFechaEntradasAnterioraTomaEntradasTemporales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iddepar" Type="int" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="fechacarga" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasConsultaPorDepartamento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasEliminarPorBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasEliminarPorDepartamento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasEliminarPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasPorBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasPorUbicacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasUbicacionesAuditadasPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasUbicacionesPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spDepartamentosZonasUbicacionesTerminadasPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spDepositoPisoEnToma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasConsultaPorDivision" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasEliminarPorBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasEliminarPorDivision" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="division" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasEliminarPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasPorBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasPorUbicacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasUbicacionesAuditadasPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasUbicacionesPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spDivisionesZonasUbicacionesTerminadasPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="division" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="tipo" Type="char" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spEliminarEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEliminarEntradaPorMarca" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEliminarIdentificadoresPisoVentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ident" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradasB0" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spEntradasPN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesAutorizacionesInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identradatemp" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="causa" Type="varchar" Mode="In" />
+    <Parameter Name="obser" Type="varchar" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesBultosCargadosPorPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesBultosDescargadosPorPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesCantidadBultosDescargadosPorControlDeCarga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+    <Parameter Name="basedestino" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesConsultaPorControles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesControlesDeCarga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesMarcarAnterioresaunaFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesPorBulto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesPorBulto2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesPorBultoConsolidado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesPorBultoSolo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesPorPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesReportesDiferencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spEntradasTemporalesReportesPackingList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spEntradaTemporalMarcarBultoNoDescargado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+    <Parameter Name="referencia" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="spFechaMinimaInventarioDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFechaMinimaInventarioPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFechasInventarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spFechasInventariosDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFechasInventariosPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFrecuenciaCantidadDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFrecuenciaCantidadDeposito1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="ident" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spFrecuenciaCantidadPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spFrecuenciaCantidadPiso1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="ident" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetBasesXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UsuarioId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetDocEstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spIdentificadorOcupado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spIdentificadorOcupadoDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spIdTransaccionDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spIdTransaccionPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertarAjustePDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="hora" Type="char" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="idloc" Type="int" Mode="In" />
+    <Parameter Name="idtran" Type="int" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertarDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="hora" Type="char" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="idtran" Type="int" Mode="In" />
+    <Parameter Name="estilo" Type="varchar" Mode="In" />
+    <Parameter Name="sku" Type="decimal" Mode="In" />
+    <Parameter Name="ajuste" Type="bit" Mode="In" />
+    <Parameter Name="comentario" Type="varchar" Mode="In" />
+    <Parameter Name="control_inventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="marcado" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="spInsertarDepositoPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cant" Type="int" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="comen" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertarEntradaTemporal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="fuenteentrada" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spInsertarEntradaTemporalTodo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="fuenteentrada" Type="varchar" Mode="In" />
+    <Parameter Name="no_camion" Type="nchar" Mode="In" />
+    <Parameter Name="movtransp" Type="nchar" Mode="In" />
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+    <Parameter Name="bto_cons" Type="nchar" Mode="In" />
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+    <Parameter Name="referencia" Type="nchar" Mode="In" />
+    <Parameter Name="id_usuario" Type="int" Mode="In" />
+    <Parameter Name="fechacarga" Type="datetime" Mode="In" />
+    <Parameter Name="descargado" Type="bit" Mode="In" />
+    <Parameter Name="numlinea" Type="nchar" Mode="In" />
+    <Parameter Name="pedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertarEntradaTemporalTodoConMarca" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="fuenteentrada" Type="varchar" Mode="In" />
+    <Parameter Name="no_camion" Type="nchar" Mode="In" />
+    <Parameter Name="movtransp" Type="nchar" Mode="In" />
+    <Parameter Name="ctrlcarga" Type="nchar" Mode="In" />
+    <Parameter Name="bto_cons" Type="nchar" Mode="In" />
+    <Parameter Name="bulto" Type="nchar" Mode="In" />
+    <Parameter Name="referencia" Type="nchar" Mode="In" />
+    <Parameter Name="id_usuario" Type="int" Mode="In" />
+    <Parameter Name="fechacarga" Type="datetime" Mode="In" />
+    <Parameter Name="descargado" Type="bit" Mode="In" />
+    <Parameter Name="marca" Type="bit" Mode="In" />
+    <Parameter Name="numlinea" Type="nchar" Mode="In" />
+    <Parameter Name="pedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertarMermaPDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="hora" Type="char" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="idloc" Type="int" Mode="In" />
+    <Parameter Name="idtran" Type="int" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertarPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="hora" Type="char" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+    <Parameter Name="idtran" Type="int" Mode="In" />
+    <Parameter Name="estilo" Type="varchar" Mode="In" />
+    <Parameter Name="sku" Type="decimal" Mode="In" />
+    <Parameter Name="ajuste" Type="bit" Mode="In" />
+    <Parameter Name="comentario" Type="varchar" Mode="In" />
+    <Parameter Name="control_inventario" Type="nvarchar" Mode="In" />
+    <Parameter Name="marcado" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="spInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spInventarioAntesTomaStevensConsultar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="iddepar" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioAntesTomaStevensInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="iddepar" Type="int" Mode="In" />
+    <Parameter Name="entradas" Type="decimal" Mode="In" />
+    <Parameter Name="salidas" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoCostoPiezasPorBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoEntreFechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoFechaInicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoFechasExtremas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoIdentificadores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoPorUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoProblemas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoUbicacionesPorCodigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbar" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioDepositoUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoCostoPiezasPorBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoEntreFechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoFechaInicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoFechasExtremas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoIdentificadores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoPorUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoProblemas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoUbicacionesPorCodigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbar" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioPisoUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioUsuariosDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInventarioUsuariosPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMarcarAjustePDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMarcarDepositoPisoEnToma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMarcarInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMarcarInventarioDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMarcarInventarioPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMarcarInventarioPorUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMarcarMermaPDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMermasEliminarHaceUnaSemana" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spMermasPDT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spMermasPDTFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spPerteneceAPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbarra" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spProductoSAPPorCodigoBarra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codbar" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spProductosUbicadosDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spProductosUbicadosPiso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spRegistroAuditoriasConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="documento" Type="nvarchar" Mode="In" />
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spRegistroAuditoriasEnProgresoPorZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="depar" Type="varchar" Mode="In" />
+    <Parameter Name="zona" Type="varchar" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spRegistroAuditoriasInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificador" Type="varchar" Mode="In" />
+    <Parameter Name="codigobarra" Type="varchar" Mode="In" />
+    <Parameter Name="cantidadajustada" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="idusuarioautoriza" Type="int" Mode="In" />
+    <Parameter Name="idusuarioauditado" Type="int" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spReporteDetalladoInventarioPorBasePorDepartamentoDespuesToma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iddepar" Type="int" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spReporteDiferenciasParaBase0" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fechacarga1" Type="datetime" Mode="In" />
+    <Parameter Name="fechacarga2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spTransaccionesMarcadasMarcarId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spTransaccionesMarcadasMarcarTodo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUbicacionesTerminadasConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUbicacionesTerminadasEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUbicacionesTerminadasInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ubic" Type="varchar" Mode="In" />
+    <Parameter Name="idbase" Type="int" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="idusuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spUbicacionesTerminadasLimpiar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idbase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spVentasNoProcesadas_Acciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spVentasNoProcesadas_RecorridoInsertar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="miidusuario" Type="int" Mode="In" />
+    <Parameter Name="miidaccion" Type="int" Mode="In" />
+    <Parameter Name="miidtransadet" Type="int" Mode="In" />
+    <Parameter Name="mifecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="spVentasNoProcesadasActualizarEstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mi_id" Type="int" Mode="In" />
+    <Parameter Name="mi_idaccion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spVentasNoProcesadasConsultaPorFechasYAccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fecha1" Type="datetime" Mode="In" />
+    <Parameter Name="fecha2" Type="datetime" Mode="In" />
+    <Parameter Name="nombre_accion" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="PA_TOVA_SIB_InventariosModelStoreContainer">
+    <EntitySet Name="AF_LOG" EntityType="Self.AF_LOG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ajustes" EntityType="Self.Ajustes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ajustes_Inventario_MERCH" EntityType="Self.Ajustes_Inventario_MERCH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AjustesProveedoresNacionales" EntityType="Self.AjustesProveedoresNacionales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Archivos_AjustesManuales" EntityType="Self.Archivos_AjustesManuales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Archivos_ConteosManuales" EntityType="Self.Archivos_ConteosManuales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bultos_Carga_Descarga_Posterior" EntityType="Self.Bultos_Carga_Descarga_Posterior" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BultosNoIdentificados" EntityType="Self.BultosNoIdentificados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BultosSinMaestroArticulos" EntityType="Self.BultosSinMaestroArticulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciclico_Producto" EntityType="Self.Ciclico_Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciclico_Ubicacion" EntityType="Self.Ciclico_Ubicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciclico_UbicacionCodigo" EntityType="Self.Ciclico_UbicacionCodigo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciclico_Zonificacion" EntityType="Self.Ciclico_Zonificacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComplementosMuebleria" EntityType="Self.ComplementosMuebleria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CondicionSugerencia_ConteoDiario" EntityType="Self.CondicionSugerencia_ConteoDiario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoCiclico" EntityType="Self.ConteoCiclico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoCiclico_Auditoria" EntityType="Self.ConteoCiclico_Auditoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoCiclico_Conteo" EntityType="Self.ConteoCiclico_Conteo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoCiclico_DivisionesZonas" EntityType="Self.ConteoCiclico_DivisionesZonas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoCiclico_UpcNoExiste" EntityType="Self.ConteoCiclico_UpcNoExiste" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoDiario" EntityType="Self.ConteoDiario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoDiario_Analisis" EntityType="Self.ConteoDiario_Analisis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoDiario_Detalle" EntityType="Self.ConteoDiario_Detalle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoDiario_DetGruposAprobacionAjustes" EntityType="Self.ConteoDiario_DetGruposAprobacionAjustes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoDiario_GruposAprobacionAjustes" EntityType="Self.ConteoDiario_GruposAprobacionAjustes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inv_EstilosTmp" EntityType="Self.Control_Inv_EstilosTmp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inv_Upc_SinDoc" EntityType="Self.Control_Inv_Upc_SinDoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inventario_Documentos" EntityType="Self.Control_Inventario_Documentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inventario_Estados" EntityType="Self.Control_Inventario_Estados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inventario_Sku" EntityType="Self.Control_Inventario_Sku" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inventario_TiposAjustes" EntityType="Self.Control_Inventario_TiposAjustes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inventario_TiposConteo" EntityType="Self.Control_Inventario_TiposConteo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Control_Inventario_Upc" EntityType="Self.Control_Inventario_Upc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ControlesCargaEnviados" EntityType="Self.ControlesCargaEnviados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartamentosZonas" EntityType="Self.DepartamentosZonas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepositoPiso" EntityType="Self.DepositoPiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_Ajustes_Inventario_MERCH" EntityType="Self.Detalle_Ajustes_Inventario_MERCH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_Archivos_AjustesManuales" EntityType="Self.Detalle_Archivos_AjustesManuales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle_Archivos_ConteosManuales" EntityType="Self.Detalle_Archivos_ConteosManuales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DivisionesZonas" EntityType="Self.DivisionesZonas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntradasTemporales" EntityType="Self.EntradasTemporales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntradasTemporalesAutorizaciones" EntityType="Self.EntradasTemporalesAutorizaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntradasTemporalesCalculos" EntityType="Self.EntradasTemporalesCalculos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estatus_ConteoDiario" EntityType="Self.Estatus_ConteoDiario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estatus_TareasConteoDiario" EntityType="Self.Estatus_TareasConteoDiario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventario_Conteo" EntityType="Self.Inventario_Conteo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventario_DetalleConteo" EntityType="Self.Inventario_DetalleConteo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventarioAntesTomaStevens" EntityType="Self.InventarioAntesTomaStevens" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventarioAntesTomaStevensCaja" EntityType="Self.InventarioAntesTomaStevensCaja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventarioDeposito" EntityType="Self.InventarioDeposito" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventarioPiso" EntityType="Self.InventarioPiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JerarquiasMERCH" EntityType="Self.JerarquiasMERCH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogGeneracion_Tareas_ConteoDiario" EntityType="Self.LogGeneracion_Tareas_ConteoDiario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mermas" EntityType="Self.Mermas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MotivosAjustes_ConteoDiario" EntityType="Self.MotivosAjustes_ConteoDiario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="param_condicion" EntityType="Self.param_condicion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parametros_Sugerencia_Conteo_Diario" EntityType="Self.Parametros_Sugerencia_Conteo_Diario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistroAuditorias" EntityType="Self.RegistroAuditorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tareas_ConteoDiario" EntityType="Self.Tareas_ConteoDiario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tareas_Motivos" EntityType="Self.Tareas_Motivos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransaccionesVentasNoMarcadas" EntityType="Self.TransaccionesVentasNoMarcadas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UbicacionesTerminadas" EntityType="Self.UbicacionesTerminadas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VentasNoProcesadas" EntityType="Self.VentasNoProcesadas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VentasNoProcesadas_Acciones" EntityType="Self.VentasNoProcesadas_Acciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VentasNoProcesadas_Recorrido" EntityType="Self.VentasNoProcesadas_Recorrido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ajustes_SecuenciaArchivos" EntityType="Self.Ajustes_SecuenciaArchivos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Ajustes_SecuenciaArchivos].[num_documento] AS [num_documento], 
+    [Ajustes_SecuenciaArchivos].[Fecha_Crea] AS [Fecha_Crea], 
+    [Ajustes_SecuenciaArchivos].[Usuario_Crea] AS [Usuario_Crea], 
+    [Ajustes_SecuenciaArchivos].[Fecha_Mod] AS [Fecha_Mod], 
+    [Ajustes_SecuenciaArchivos].[Usuario_Mod] AS [Usuario_Mod]
+    FROM [dbo].[Ajustes_SecuenciaArchivos] AS [Ajustes_SecuenciaArchivos]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

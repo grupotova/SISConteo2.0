@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TOVA_USERModelStoreContainer" CdmEntityContainer="TOVA_USER_Entities">
+    <EntitySetMapping Name="Acceso">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Acceso">
+        <MappingFragment StoreEntitySet="Acceso">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Vista" ColumnName="Vista" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Aplicacion_ID" ColumnName="Aplicacion_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccesoRol">
+      <EntityTypeMapping TypeName="TOVA_USERModel.AccesoRol">
+        <MappingFragment StoreEntitySet="AccesoRol">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+          <ScalarProperty Name="Acceso_ID" ColumnName="Acceso_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aplicacion">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Aplicacion">
+        <MappingFragment StoreEntitySet="Aplicacion">
+          <ScalarProperty Name="Aplicacion_ID" ColumnName="Aplicacion_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="RutaSetup" ColumnName="RutaSetup" />
+          <ScalarProperty Name="Desarrollador" ColumnName="Desarrollador" />
+          <ScalarProperty Name="Soporte" ColumnName="Soporte" />
+          <ScalarProperty Name="NombreDB" ColumnName="NombreDB" />
+          <ScalarProperty Name="IPDB" ColumnName="IPDB" />
+          <ScalarProperty Name="Lenguaje" ColumnName="Lenguaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AplicacionRol">
+      <EntityTypeMapping TypeName="TOVA_USERModel.AplicacionRol">
+        <MappingFragment StoreEntitySet="AplicacionRol">
+          <ScalarProperty Name="AplicacionRol_ID" ColumnName="AplicacionRol_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Aplicacion_ID" ColumnName="Aplicacion_ID" />
+          <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cargo">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Cargo">
+        <MappingFragment StoreEntitySet="Cargo">
+          <ScalarProperty Name="Cargo_ID" ColumnName="Cargo_ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CentroCosto">
+      <EntityTypeMapping TypeName="TOVA_USERModel.CentroCosto">
+        <MappingFragment StoreEntitySet="CentroCosto">
+          <ScalarProperty Name="CentroCosto_ID" ColumnName="CentroCosto_ID" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Padre" ColumnName="Padre" />
+          <ScalarProperty Name="Base" ColumnName="Base" />
+          <ScalarProperty Name="Reembolso" ColumnName="Reembolso" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="OrdenReembolso" ColumnName="OrdenReembolso" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CentroCostoUsuario">
+      <EntityTypeMapping TypeName="TOVA_USERModel.CentroCostoUsuario">
+        <MappingFragment StoreEntitySet="CentroCostoUsuario">
+          <ScalarProperty Name="CentroCostoUsuario_ID" ColumnName="CentroCostoUsuario_ID" />
+          <ScalarProperty Name="CentroCosto_ID" ColumnName="CentroCosto_ID" />
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Accion" ColumnName="Accion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Menu_ID" ColumnName="Menu_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Padre" ColumnName="Padre" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="Icono" ColumnName="Icono" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Vista" ColumnName="Vista" />
+          <ScalarProperty Name="Aplicacion_ID" ColumnName="Aplicacion_ID" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuOperacion">
+      <EntityTypeMapping TypeName="TOVA_USERModel.MenuOperacion">
+        <MappingFragment StoreEntitySet="MenuOperacion">
+          <ScalarProperty Name="MenuOperacion_ID" ColumnName="MenuOperacion_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Operacion_ID" ColumnName="Operacion_ID" />
+          <ScalarProperty Name="Menu_ID" ColumnName="Menu_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuOperacionRol">
+      <EntityTypeMapping TypeName="TOVA_USERModel.MenuOperacionRol">
+        <MappingFragment StoreEntitySet="MenuOperacionRol">
+          <ScalarProperty Name="MenuOperacionRol_ID" ColumnName="MenuOperacionRol_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="MenuOperacion_ID" ColumnName="MenuOperacion_ID" />
+          <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuRol">
+      <EntityTypeMapping TypeName="TOVA_USERModel.MenuRol">
+        <MappingFragment StoreEntitySet="MenuRol">
+          <ScalarProperty Name="MenuRol_ID" ColumnName="MenuRol_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+          <ScalarProperty Name="Menu_ID" ColumnName="Menu_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Operacion">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Operacion">
+        <MappingFragment StoreEntitySet="Operacion">
+          <ScalarProperty Name="Operacion_ID" ColumnName="Operacion_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="TOVA_USERModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ActiveDirectory" ColumnName="ActiveDirectory" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Cargo_ID" ColumnName="Cargo_ID" />
+          <ScalarProperty Name="Cargo_Jefe" ColumnName="Cargo_Jefe" />
+          <ScalarProperty Name="NumAsociado" ColumnName="NumAsociado" />
+          <ScalarProperty Name="Nomina" ColumnName="Nomina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioAplicacion">
+      <EntityTypeMapping TypeName="TOVA_USERModel.UsuarioAplicacion">
+        <MappingFragment StoreEntitySet="UsuarioAplicacion">
+          <ScalarProperty Name="UsuarioAplicacion_ID" ColumnName="UsuarioAplicacion_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Aplicacion_ID" ColumnName="Aplicacion_ID" />
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioRol">
+      <EntityTypeMapping TypeName="TOVA_USERModel.UsuarioRol">
+        <MappingFragment StoreEntitySet="UsuarioRol">
+          <ScalarProperty Name="UsuarioRol_ID" ColumnName="UsuarioRol_ID" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="UsuarioModificador" ColumnName="UsuarioModificador" />
+          <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+          <ScalarProperty Name="Aplicacion_ID" ColumnName="Aplicacion_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PA_GetDataAcceso" FunctionName="TOVA_USERModel.Store.PA_GetDataAcceso" />
+    <FunctionImportMapping FunctionImportName="PA_GetDataAplicacion" FunctionName="TOVA_USERModel.Store.PA_GetDataAplicacion" />
+    <FunctionImportMapping FunctionImportName="PA_GetDataCargo" FunctionName="TOVA_USERModel.Store.PA_GetDataCargo" />
+    <FunctionImportMapping FunctionImportName="PA_GetDataMenu" FunctionName="TOVA_USERModel.Store.PA_GetDataMenu" />
+    <FunctionImportMapping FunctionImportName="PA_GetDataMenuRolAplicacion" FunctionName="TOVA_USERModel.Store.PA_GetDataMenuRolAplicacion" />
+    <FunctionImportMapping FunctionImportName="PA_GetDataRol" FunctionName="TOVA_USERModel.Store.PA_GetDataRol" />
+    <FunctionImportMapping FunctionImportName="PA_GetDataUsuario" FunctionName="TOVA_USERModel.Store.PA_GetDataUsuario" />
+    <FunctionImportMapping FunctionImportName="PA_GetDataUsuarioEvaluaciones" FunctionName="TOVA_USERModel.Store.PA_GetDataUsuarioEvaluaciones" />
+  </EntityContainerMapping>
+</Mapping>

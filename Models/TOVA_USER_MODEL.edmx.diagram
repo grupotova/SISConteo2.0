@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dae33a26056e4d4b95fbbe6dbf581370" Name="Diagram1">
+        <EntityTypeShape EntityType="TOVA_USERModel.Acceso" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.AccesoRol" Width="1.5" PointX="10.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.Aplicacion" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.AplicacionRol" Width="1.5" PointX="8.25" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.Cargo" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.CentroCosto" Width="1.5" PointX="3" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.CentroCostoUsuario" Width="1.5" PointX="5.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.Log" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.Menu" Width="1.5" PointX="8.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.MenuOperacion" Width="1.5" PointX="10.5" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.MenuOperacionRol" Width="1.5" PointX="12.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.MenuRol" Width="1.5" PointX="10.5" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.Operacion" Width="1.5" PointX="3" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.Rol" Width="1.5" PointX="3" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.Usuario" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.UsuarioAplicacion" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOVA_USERModel.UsuarioRol" Width="1.5" PointX="8.25" PointY="30.125" IsExpanded="true" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Acceso_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Acceso_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Acceso_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AccesoRol_Acceso" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AccesoRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AccesoRol_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AccesoRol_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Aplicacion_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Aplicacion_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AplicacionRol_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Menu_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioAplicacion_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioRol_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AplicacionRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AplicacionRol_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_AplicacionRol_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Cargo_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Cargo_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_CentroCosto_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_CentroCosto_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_CentroCostoUsuario_CentroCosto" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Menu_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Menu_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuOperacion_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuRol_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuOperacion_Operacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuOperacionRol_MenuOperacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuOperacionRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuOperacionRol_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuOperacionRol_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuRol_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_MenuRol_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Operacion_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Operacion_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Rol_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Rol_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Usuario_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_Usuario_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioAplicacion_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioAplicacion_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioAplicacion_UsuarioModificador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioRol_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioRol_UsuarioCreador" ManuallyRouted="false" />
+        <AssociationConnector Association="TOVA_USERModel.FK_UsuarioRol_UsuarioModificador" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

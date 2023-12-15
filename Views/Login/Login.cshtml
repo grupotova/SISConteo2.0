@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de conteo</title>
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <link href="js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="css/cssform.css" rel="stylesheet" />
+    <script src="js/bootstrap/js/bootstrap.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <link href="Content/Login/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/Login/form-elements.css" rel="stylesheet" />
+    <link href="Content/Login/azure.css" rel="stylesheet" />
+    <link href="Content/Login/style2.css" rel="stylesheet" />
+    <script src="js/scripts.js"></script>
+    <style type="text/css">
+        #cmb_base {
+            width: 100% !important;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+        }
+
+            #cmb_base input {
+                height: 25px;
+                padding-left: 20px;
+                padding-right: 20px;
+                font-size: 16px;
+            }
+
+        input[type=submit] {
+            background: #001931 !important;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    @model WebInventario2._0.Models.FormModels.LoginModel
+    @using (Html.BeginForm("IniciarSesion", "Login", FormMethod.Post))
+    {
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box mx-auto">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>Sistema de Conteo</h3>
+                                </div>
+                                <div class="form-top-right">
+                                    <div id="logo">
+                                        <img id="img" src="Images/logo_grupotova.png" style="height: 100%; width: 100%" alt="imgf" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-bottom">
+                                <form id="form2" runat="server">
+
+                                    <!-- Usuario -->
+                                    <div class="form-group">
+                                        <label class="" for="form-username">Usuario</label>
+                                        @Html.TextBoxFor(s=>s.usuario)
+                                    </div>
+
+                                    <!-- Contrasena -->
+                                    <div class="form-group">
+                                        <label class="" for="form-password">Contrase&ntilde;a</label>
+                                        @Html.PasswordFor(s=>s.contrasenia)
+                                    </div>
+
+                                    <input type="submit" value="Iniciar Sesion"/>
+
+                                    <div class="text-center my-2">
+                                       @Html.LabelFor(s=>s.mensaje)
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

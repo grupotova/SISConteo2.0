@@ -1,0 +1,1146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TOVA_USERModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Acceso">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Controlador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Vista" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Int32" />
+    <Property Name="Aplicacion_ID" Type="Int32" />
+    <NavigationProperty Name="Aplicacion" Relationship="Self.FK_Acceso_Aplicacion" FromRole="Acceso" ToRole="Aplicacion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Acceso_UsuarioCreador" FromRole="Acceso" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Acceso_UsuarioModificador" FromRole="Acceso" ToRole="Usuario" />
+    <NavigationProperty Name="AccesoRol" Relationship="Self.FK_AccesoRol_Acceso" FromRole="Acceso" ToRole="AccesoRol" />
+  </EntityType>
+  <EntityType Name="AccesoRol">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+    <Property Name="Acceso_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Acceso" Relationship="Self.FK_AccesoRol_Acceso" FromRole="AccesoRol" ToRole="Acceso" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_AccesoRol_Rol" FromRole="AccesoRol" ToRole="Rol" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_AccesoRol_UsuarioCreador" FromRole="AccesoRol" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_AccesoRol_UsuarioModificador" FromRole="AccesoRol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Aplicacion">
+    <Key>
+      <PropertyRef Name="Aplicacion_ID" />
+    </Key>
+    <Property Name="Aplicacion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Ruta" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Version" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="RutaSetup" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Desarrollador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Soporte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NombreDB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IPDB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Lenguaje" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Acceso" Relationship="Self.FK_Acceso_Aplicacion" FromRole="Aplicacion" ToRole="Acceso" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Aplicacion_UsuarioCreador" FromRole="Aplicacion" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Aplicacion_UsuarioModificador" FromRole="Aplicacion" ToRole="Usuario" />
+    <NavigationProperty Name="AplicacionRol" Relationship="Self.FK_AplicacionRol_Aplicacion" FromRole="Aplicacion" ToRole="AplicacionRol" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_Menu_Aplicacion" FromRole="Aplicacion" ToRole="Menu" />
+    <NavigationProperty Name="UsuarioAplicacion" Relationship="Self.FK_UsuarioAplicacion_Aplicacion" FromRole="Aplicacion" ToRole="UsuarioAplicacion" />
+    <NavigationProperty Name="UsuarioRol" Relationship="Self.FK_UsuarioRol_Aplicacion" FromRole="Aplicacion" ToRole="UsuarioRol" />
+  </EntityType>
+  <EntityType Name="AplicacionRol">
+    <Key>
+      <PropertyRef Name="AplicacionRol_ID" />
+    </Key>
+    <Property Name="AplicacionRol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Aplicacion_ID" Type="Int32" Nullable="false" />
+    <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Aplicacion" Relationship="Self.FK_AplicacionRol_Aplicacion" FromRole="AplicacionRol" ToRole="Aplicacion" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_AplicacionRol_Rol" FromRole="AplicacionRol" ToRole="Rol" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_AplicacionRol_UsuarioCreador" FromRole="AplicacionRol" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_AplicacionRol_UsuarioModificador" FromRole="AplicacionRol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="Cargo_ID" />
+    </Key>
+    <Property Name="Cargo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="UsuarioModificador" Type="Int32" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Cargo_UsuarioCreador" FromRole="Cargo" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Cargo_UsuarioModificador" FromRole="Cargo" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="CentroCosto">
+    <Key>
+      <PropertyRef Name="CentroCosto_ID" />
+    </Key>
+    <Property Name="CentroCosto_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nivel" Type="Int32" Nullable="false" />
+    <Property Name="Padre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Base" Type="Int32" />
+    <Property Name="Reembolso" Type="Int32" />
+    <Property Name="Alias" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="OrdenReembolso" Type="Int32" />
+    <Property Name="Activo" Type="Int32" Nullable="false" />
+    <Property Name="UsuarioCreador" Type="Int32" />
+    <Property Name="UsuarioModificador" Type="Int32" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_CentroCosto_UsuarioCreador" FromRole="CentroCosto" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_CentroCosto_UsuarioModificador" FromRole="CentroCosto" ToRole="Usuario" />
+    <NavigationProperty Name="CentroCostoUsuario" Relationship="Self.FK_CentroCostoUsuario_CentroCosto" FromRole="CentroCosto" ToRole="CentroCostoUsuario" />
+  </EntityType>
+  <EntityType Name="CentroCostoUsuario">
+    <Key>
+      <PropertyRef Name="CentroCostoUsuario_ID" />
+    </Key>
+    <Property Name="CentroCostoUsuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CentroCosto_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+    <Property Name="UsuarioCreador" Type="Int32" />
+    <Property Name="UsuarioModificador" Type="Int32" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CentroCosto" Relationship="Self.FK_CentroCostoUsuario_CentroCosto" FromRole="CentroCostoUsuario" ToRole="CentroCosto" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Usuario" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Accion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Menu_ID" />
+    </Key>
+    <Property Name="Menu_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Padre" Type="Int32" Nullable="false" />
+    <Property Name="Posicion" Type="Int32" />
+    <Property Name="Icono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Controlador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Vista" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Aplicacion_ID" Type="Int32" />
+    <Property Name="Activo" Type="Int32" />
+    <NavigationProperty Name="Aplicacion" Relationship="Self.FK_Menu_Aplicacion" FromRole="Menu" ToRole="Aplicacion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Menu_UsuarioCreador" FromRole="Menu" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Menu_UsuarioModificador" FromRole="Menu" ToRole="Usuario" />
+    <NavigationProperty Name="MenuOperacion" Relationship="Self.FK_MenuOperacion_Menu" FromRole="Menu" ToRole="MenuOperacion" />
+    <NavigationProperty Name="MenuRol" Relationship="Self.FK_MenuRol_Menu" FromRole="Menu" ToRole="MenuRol" />
+  </EntityType>
+  <EntityType Name="MenuOperacion">
+    <Key>
+      <PropertyRef Name="MenuOperacion_ID" />
+    </Key>
+    <Property Name="MenuOperacion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Operacion_ID" Type="Int32" Nullable="false" />
+    <Property Name="Menu_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_MenuOperacion_Menu" FromRole="MenuOperacion" ToRole="Menu" />
+    <NavigationProperty Name="Operacion" Relationship="Self.FK_MenuOperacion_Operacion" FromRole="MenuOperacion" ToRole="Operacion" />
+    <NavigationProperty Name="MenuOperacionRol" Relationship="Self.FK_MenuOperacionRol_MenuOperacion" FromRole="MenuOperacion" ToRole="MenuOperacionRol" />
+  </EntityType>
+  <EntityType Name="MenuOperacionRol">
+    <Key>
+      <PropertyRef Name="MenuOperacionRol_ID" />
+    </Key>
+    <Property Name="MenuOperacionRol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="MenuOperacion_ID" Type="Int32" Nullable="false" />
+    <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MenuOperacion" Relationship="Self.FK_MenuOperacionRol_MenuOperacion" FromRole="MenuOperacionRol" ToRole="MenuOperacion" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_MenuOperacionRol_Rol" FromRole="MenuOperacionRol" ToRole="Rol" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_MenuOperacionRol_UsuarioCreador" FromRole="MenuOperacionRol" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_MenuOperacionRol_UsuarioModificador" FromRole="MenuOperacionRol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="MenuRol">
+    <Key>
+      <PropertyRef Name="MenuRol_ID" />
+    </Key>
+    <Property Name="MenuRol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+    <Property Name="Menu_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_MenuRol_Menu" FromRole="MenuRol" ToRole="Menu" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_MenuRol_Rol" FromRole="MenuRol" ToRole="Rol" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_MenuRol_UsuarioCreador" FromRole="MenuRol" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_MenuRol_UsuarioModificador" FromRole="MenuRol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Operacion">
+    <Key>
+      <PropertyRef Name="Operacion_ID" />
+    </Key>
+    <Property Name="Operacion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MenuOperacion" Relationship="Self.FK_MenuOperacion_Operacion" FromRole="Operacion" ToRole="MenuOperacion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Operacion_UsuarioCreador" FromRole="Operacion" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Operacion_UsuarioModificador" FromRole="Operacion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Rol_ID" />
+    </Key>
+    <Property Name="Rol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AccesoRol" Relationship="Self.FK_AccesoRol_Rol" FromRole="Rol" ToRole="AccesoRol" />
+    <NavigationProperty Name="AplicacionRol" Relationship="Self.FK_AplicacionRol_Rol" FromRole="Rol" ToRole="AplicacionRol" />
+    <NavigationProperty Name="MenuOperacionRol" Relationship="Self.FK_MenuOperacionRol_Rol" FromRole="Rol" ToRole="MenuOperacionRol" />
+    <NavigationProperty Name="MenuRol" Relationship="Self.FK_MenuRol_Rol" FromRole="Rol" ToRole="MenuRol" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Rol_UsuarioCreador" FromRole="Rol" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Rol_UsuarioModificador" FromRole="Rol" ToRole="Usuario" />
+    <NavigationProperty Name="UsuarioRol" Relationship="Self.FK_UsuarioRol_Rol" FromRole="Rol" ToRole="UsuarioRol" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Usuario_ID" />
+    </Key>
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ActiveDirectory" Type="Int32" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cargo_ID" Type="Int32" />
+    <Property Name="Cargo_Jefe" Type="Int32" />
+    <Property Name="NumAsociado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Nomina" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Acceso" Relationship="Self.FK_Acceso_UsuarioCreador" FromRole="Usuario" ToRole="Acceso" />
+    <NavigationProperty Name="Acceso1" Relationship="Self.FK_Acceso_UsuarioModificador" FromRole="Usuario" ToRole="Acceso" />
+    <NavigationProperty Name="AccesoRol" Relationship="Self.FK_AccesoRol_UsuarioCreador" FromRole="Usuario" ToRole="AccesoRol" />
+    <NavigationProperty Name="AccesoRol1" Relationship="Self.FK_AccesoRol_UsuarioModificador" FromRole="Usuario" ToRole="AccesoRol" />
+    <NavigationProperty Name="Aplicacion" Relationship="Self.FK_Aplicacion_UsuarioCreador" FromRole="Usuario" ToRole="Aplicacion" />
+    <NavigationProperty Name="Aplicacion1" Relationship="Self.FK_Aplicacion_UsuarioModificador" FromRole="Usuario" ToRole="Aplicacion" />
+    <NavigationProperty Name="AplicacionRol" Relationship="Self.FK_AplicacionRol_UsuarioCreador" FromRole="Usuario" ToRole="AplicacionRol" />
+    <NavigationProperty Name="AplicacionRol1" Relationship="Self.FK_AplicacionRol_UsuarioModificador" FromRole="Usuario" ToRole="AplicacionRol" />
+    <NavigationProperty Name="Cargo" Relationship="Self.FK_Cargo_UsuarioCreador" FromRole="Usuario" ToRole="Cargo" />
+    <NavigationProperty Name="Cargo1" Relationship="Self.FK_Cargo_UsuarioModificador" FromRole="Usuario" ToRole="Cargo" />
+    <NavigationProperty Name="CentroCosto" Relationship="Self.FK_CentroCosto_UsuarioCreador" FromRole="Usuario" ToRole="CentroCosto" />
+    <NavigationProperty Name="CentroCosto1" Relationship="Self.FK_CentroCosto_UsuarioModificador" FromRole="Usuario" ToRole="CentroCosto" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_Menu_UsuarioCreador" FromRole="Usuario" ToRole="Menu" />
+    <NavigationProperty Name="Menu1" Relationship="Self.FK_Menu_UsuarioModificador" FromRole="Usuario" ToRole="Menu" />
+    <NavigationProperty Name="MenuOperacionRol" Relationship="Self.FK_MenuOperacionRol_UsuarioCreador" FromRole="Usuario" ToRole="MenuOperacionRol" />
+    <NavigationProperty Name="MenuOperacionRol1" Relationship="Self.FK_MenuOperacionRol_UsuarioModificador" FromRole="Usuario" ToRole="MenuOperacionRol" />
+    <NavigationProperty Name="MenuRol" Relationship="Self.FK_MenuRol_UsuarioCreador" FromRole="Usuario" ToRole="MenuRol" />
+    <NavigationProperty Name="MenuRol1" Relationship="Self.FK_MenuRol_UsuarioModificador" FromRole="Usuario" ToRole="MenuRol" />
+    <NavigationProperty Name="Operacion" Relationship="Self.FK_Operacion_UsuarioCreador" FromRole="Usuario" ToRole="Operacion" />
+    <NavigationProperty Name="Operacion1" Relationship="Self.FK_Operacion_UsuarioModificador" FromRole="Usuario" ToRole="Operacion" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_Rol_UsuarioCreador" FromRole="Usuario" ToRole="Rol" />
+    <NavigationProperty Name="Rol1" Relationship="Self.FK_Rol_UsuarioModificador" FromRole="Usuario" ToRole="Rol" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Usuario_UsuarioCreador" FromRole="Usuario" ToRole="Usuario1" />
+    <NavigationProperty Name="Usuario2" Relationship="Self.FK_Usuario_UsuarioCreador" FromRole="Usuario1" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario11" Relationship="Self.FK_Usuario_UsuarioModificador" FromRole="Usuario" ToRole="Usuario1" />
+    <NavigationProperty Name="Usuario3" Relationship="Self.FK_Usuario_UsuarioModificador" FromRole="Usuario1" ToRole="Usuario" />
+    <NavigationProperty Name="UsuarioAplicacion" Relationship="Self.FK_UsuarioAplicacion_Usuario" FromRole="Usuario" ToRole="UsuarioAplicacion" />
+    <NavigationProperty Name="UsuarioAplicacion1" Relationship="Self.FK_UsuarioAplicacion_UsuarioCreador" FromRole="Usuario" ToRole="UsuarioAplicacion" />
+    <NavigationProperty Name="UsuarioAplicacion2" Relationship="Self.FK_UsuarioAplicacion_UsuarioModificador" FromRole="Usuario" ToRole="UsuarioAplicacion" />
+    <NavigationProperty Name="UsuarioRol" Relationship="Self.FK_UsuarioRol_Usuario" FromRole="Usuario" ToRole="UsuarioRol" />
+    <NavigationProperty Name="UsuarioRol1" Relationship="Self.FK_UsuarioRol_UsuarioCreador" FromRole="Usuario" ToRole="UsuarioRol" />
+    <NavigationProperty Name="UsuarioRol2" Relationship="Self.FK_UsuarioRol_UsuarioModificador" FromRole="Usuario" ToRole="UsuarioRol" />
+  </EntityType>
+  <EntityType Name="UsuarioAplicacion">
+    <Key>
+      <PropertyRef Name="UsuarioAplicacion_ID" />
+    </Key>
+    <Property Name="UsuarioAplicacion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Aplicacion_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Aplicacion" Relationship="Self.FK_UsuarioAplicacion_Aplicacion" FromRole="UsuarioAplicacion" ToRole="Aplicacion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_UsuarioAplicacion_Usuario" FromRole="UsuarioAplicacion" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_UsuarioAplicacion_UsuarioCreador" FromRole="UsuarioAplicacion" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario2" Relationship="Self.FK_UsuarioAplicacion_UsuarioModificador" FromRole="UsuarioAplicacion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="UsuarioRol">
+    <Key>
+      <PropertyRef Name="UsuarioRol_ID" />
+    </Key>
+    <Property Name="UsuarioRol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioCreador" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UsuarioModificador" Type="Int32" Nullable="false" />
+    <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+    <Property Name="Aplicacion_ID" Type="Int32" />
+    <NavigationProperty Name="Aplicacion" Relationship="Self.FK_UsuarioRol_Aplicacion" FromRole="UsuarioRol" ToRole="Aplicacion" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_UsuarioRol_Rol" FromRole="UsuarioRol" ToRole="Rol" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_UsuarioRol_Usuario" FromRole="UsuarioRol" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_UsuarioRol_UsuarioCreador" FromRole="UsuarioRol" ToRole="Usuario" />
+    <NavigationProperty Name="Usuario2" Relationship="Self.FK_UsuarioRol_UsuarioModificador" FromRole="UsuarioRol" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_Acceso_Aplicacion">
+    <End Role="Aplicacion" Type="Self.Aplicacion" Multiplicity="0..1" />
+    <End Role="Acceso" Type="Self.Acceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aplicacion">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Principal>
+      <Dependent Role="Acceso">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acceso_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Acceso" Type="Self.Acceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Acceso">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acceso_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Acceso" Type="Self.Acceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Acceso">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccesoRol_Acceso">
+    <End Role="Acceso" Type="Self.Acceso" Multiplicity="1" />
+    <End Role="AccesoRol" Type="Self.AccesoRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Acceso">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AccesoRol">
+        <PropertyRef Name="Acceso_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccesoRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="AccesoRol" Type="Self.AccesoRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Rol_ID" />
+      </Principal>
+      <Dependent Role="AccesoRol">
+        <PropertyRef Name="Rol_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccesoRol_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="AccesoRol" Type="Self.AccesoRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="AccesoRol">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccesoRol_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="AccesoRol" Type="Self.AccesoRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="AccesoRol">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aplicacion_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Aplicacion" Type="Self.Aplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Aplicacion">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aplicacion_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Aplicacion" Type="Self.Aplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Aplicacion">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AplicacionRol_Aplicacion">
+    <End Role="Aplicacion" Type="Self.Aplicacion" Multiplicity="1" />
+    <End Role="AplicacionRol" Type="Self.AplicacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aplicacion">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Principal>
+      <Dependent Role="AplicacionRol">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Aplicacion">
+    <End Role="Aplicacion" Type="Self.Aplicacion" Multiplicity="0..1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aplicacion">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioAplicacion_Aplicacion">
+    <End Role="Aplicacion" Type="Self.Aplicacion" Multiplicity="1" />
+    <End Role="UsuarioAplicacion" Type="Self.UsuarioAplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aplicacion">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Principal>
+      <Dependent Role="UsuarioAplicacion">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRol_Aplicacion">
+    <End Role="Aplicacion" Type="Self.Aplicacion" Multiplicity="0..1" />
+    <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aplicacion">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Principal>
+      <Dependent Role="UsuarioRol">
+        <PropertyRef Name="Aplicacion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AplicacionRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="AplicacionRol" Type="Self.AplicacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Rol_ID" />
+      </Principal>
+      <Dependent Role="AplicacionRol">
+        <PropertyRef Name="Rol_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AplicacionRol_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="AplicacionRol" Type="Self.AplicacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="AplicacionRol">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AplicacionRol_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="AplicacionRol" Type="Self.AplicacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="AplicacionRol">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cargo_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Cargo">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cargo_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Cargo">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CentroCosto_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="CentroCosto" Type="Self.CentroCosto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="CentroCosto">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CentroCosto_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="CentroCosto" Type="Self.CentroCosto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="CentroCosto">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CentroCostoUsuario_CentroCosto">
+    <End Role="CentroCosto" Type="Self.CentroCosto" Multiplicity="1" />
+    <End Role="CentroCostoUsuario" Type="Self.CentroCostoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CentroCosto">
+        <PropertyRef Name="CentroCosto_ID" />
+      </Principal>
+      <Dependent Role="CentroCostoUsuario">
+        <PropertyRef Name="CentroCosto_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuOperacion_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="MenuOperacion" Type="Self.MenuOperacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Menu_ID" />
+      </Principal>
+      <Dependent Role="MenuOperacion">
+        <PropertyRef Name="Menu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuRol_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="MenuRol" Type="Self.MenuRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Menu_ID" />
+      </Principal>
+      <Dependent Role="MenuRol">
+        <PropertyRef Name="Menu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuOperacion_Operacion">
+    <End Role="Operacion" Type="Self.Operacion" Multiplicity="1" />
+    <End Role="MenuOperacion" Type="Self.MenuOperacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operacion">
+        <PropertyRef Name="Operacion_ID" />
+      </Principal>
+      <Dependent Role="MenuOperacion">
+        <PropertyRef Name="Operacion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuOperacionRol_MenuOperacion">
+    <End Role="MenuOperacion" Type="Self.MenuOperacion" Multiplicity="1" />
+    <End Role="MenuOperacionRol" Type="Self.MenuOperacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuOperacion">
+        <PropertyRef Name="MenuOperacion_ID" />
+      </Principal>
+      <Dependent Role="MenuOperacionRol">
+        <PropertyRef Name="MenuOperacion_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuOperacionRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="MenuOperacionRol" Type="Self.MenuOperacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Rol_ID" />
+      </Principal>
+      <Dependent Role="MenuOperacionRol">
+        <PropertyRef Name="Rol_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuOperacionRol_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="MenuOperacionRol" Type="Self.MenuOperacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="MenuOperacionRol">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuOperacionRol_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="MenuOperacionRol" Type="Self.MenuOperacionRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="MenuOperacionRol">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="MenuRol" Type="Self.MenuRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Rol_ID" />
+      </Principal>
+      <Dependent Role="MenuRol">
+        <PropertyRef Name="Rol_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuRol_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="MenuRol" Type="Self.MenuRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="MenuRol">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuRol_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="MenuRol" Type="Self.MenuRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="MenuRol">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operacion_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Operacion">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operacion_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Operacion">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rol_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Rol">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rol_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Rol" Type="Self.Rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Rol">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Rol_ID" />
+      </Principal>
+      <Dependent Role="UsuarioRol">
+        <PropertyRef Name="Rol_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Usuario1">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Usuario1">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioAplicacion_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuarioAplicacion" Type="Self.UsuarioAplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="UsuarioAplicacion">
+        <PropertyRef Name="Usuario_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioAplicacion_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuarioAplicacion" Type="Self.UsuarioAplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="UsuarioAplicacion">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioAplicacion_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuarioAplicacion" Type="Self.UsuarioAplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="UsuarioAplicacion">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRol_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="UsuarioRol">
+        <PropertyRef Name="Usuario_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRol_UsuarioCreador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="UsuarioRol">
+        <PropertyRef Name="UsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRol_UsuarioModificador">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="UsuarioRol">
+        <PropertyRef Name="UsuarioModificador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TOVA_USER_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Acceso" EntityType="Self.Acceso" />
+    <EntitySet Name="AccesoRol" EntityType="Self.AccesoRol" />
+    <EntitySet Name="Aplicacion" EntityType="Self.Aplicacion" />
+    <EntitySet Name="AplicacionRol" EntityType="Self.AplicacionRol" />
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" />
+    <EntitySet Name="CentroCosto" EntityType="Self.CentroCosto" />
+    <EntitySet Name="CentroCostoUsuario" EntityType="Self.CentroCostoUsuario" />
+    <EntitySet Name="Log" EntityType="Self.Log" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" />
+    <EntitySet Name="MenuOperacion" EntityType="Self.MenuOperacion" />
+    <EntitySet Name="MenuOperacionRol" EntityType="Self.MenuOperacionRol" />
+    <EntitySet Name="MenuRol" EntityType="Self.MenuRol" />
+    <EntitySet Name="Operacion" EntityType="Self.Operacion" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="UsuarioAplicacion" EntityType="Self.UsuarioAplicacion" />
+    <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" />
+    <AssociationSet Name="FK_Acceso_Aplicacion" Association="Self.FK_Acceso_Aplicacion">
+      <End Role="Aplicacion" EntitySet="Aplicacion" />
+      <End Role="Acceso" EntitySet="Acceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acceso_UsuarioCreador" Association="Self.FK_Acceso_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Acceso" EntitySet="Acceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acceso_UsuarioModificador" Association="Self.FK_Acceso_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Acceso" EntitySet="Acceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccesoRol_Acceso" Association="Self.FK_AccesoRol_Acceso">
+      <End Role="Acceso" EntitySet="Acceso" />
+      <End Role="AccesoRol" EntitySet="AccesoRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccesoRol_Rol" Association="Self.FK_AccesoRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="AccesoRol" EntitySet="AccesoRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccesoRol_UsuarioCreador" Association="Self.FK_AccesoRol_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="AccesoRol" EntitySet="AccesoRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccesoRol_UsuarioModificador" Association="Self.FK_AccesoRol_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="AccesoRol" EntitySet="AccesoRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aplicacion_UsuarioCreador" Association="Self.FK_Aplicacion_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Aplicacion" EntitySet="Aplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aplicacion_UsuarioModificador" Association="Self.FK_Aplicacion_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Aplicacion" EntitySet="Aplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AplicacionRol_Aplicacion" Association="Self.FK_AplicacionRol_Aplicacion">
+      <End Role="Aplicacion" EntitySet="Aplicacion" />
+      <End Role="AplicacionRol" EntitySet="AplicacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Aplicacion" Association="Self.FK_Menu_Aplicacion">
+      <End Role="Aplicacion" EntitySet="Aplicacion" />
+      <End Role="Menu" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioAplicacion_Aplicacion" Association="Self.FK_UsuarioAplicacion_Aplicacion">
+      <End Role="Aplicacion" EntitySet="Aplicacion" />
+      <End Role="UsuarioAplicacion" EntitySet="UsuarioAplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRol_Aplicacion" Association="Self.FK_UsuarioRol_Aplicacion">
+      <End Role="Aplicacion" EntitySet="Aplicacion" />
+      <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AplicacionRol_Rol" Association="Self.FK_AplicacionRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="AplicacionRol" EntitySet="AplicacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AplicacionRol_UsuarioCreador" Association="Self.FK_AplicacionRol_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="AplicacionRol" EntitySet="AplicacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AplicacionRol_UsuarioModificador" Association="Self.FK_AplicacionRol_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="AplicacionRol" EntitySet="AplicacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cargo_UsuarioCreador" Association="Self.FK_Cargo_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Cargo" EntitySet="Cargo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cargo_UsuarioModificador" Association="Self.FK_Cargo_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Cargo" EntitySet="Cargo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CentroCosto_UsuarioCreador" Association="Self.FK_CentroCosto_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="CentroCosto" EntitySet="CentroCosto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CentroCosto_UsuarioModificador" Association="Self.FK_CentroCosto_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="CentroCosto" EntitySet="CentroCosto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CentroCostoUsuario_CentroCosto" Association="Self.FK_CentroCostoUsuario_CentroCosto">
+      <End Role="CentroCosto" EntitySet="CentroCosto" />
+      <End Role="CentroCostoUsuario" EntitySet="CentroCostoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_UsuarioCreador" Association="Self.FK_Menu_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Menu" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_UsuarioModificador" Association="Self.FK_Menu_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Menu" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuOperacion_Menu" Association="Self.FK_MenuOperacion_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="MenuOperacion" EntitySet="MenuOperacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuRol_Menu" Association="Self.FK_MenuRol_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="MenuRol" EntitySet="MenuRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuOperacion_Operacion" Association="Self.FK_MenuOperacion_Operacion">
+      <End Role="Operacion" EntitySet="Operacion" />
+      <End Role="MenuOperacion" EntitySet="MenuOperacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuOperacionRol_MenuOperacion" Association="Self.FK_MenuOperacionRol_MenuOperacion">
+      <End Role="MenuOperacion" EntitySet="MenuOperacion" />
+      <End Role="MenuOperacionRol" EntitySet="MenuOperacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuOperacionRol_Rol" Association="Self.FK_MenuOperacionRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="MenuOperacionRol" EntitySet="MenuOperacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuOperacionRol_UsuarioCreador" Association="Self.FK_MenuOperacionRol_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="MenuOperacionRol" EntitySet="MenuOperacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuOperacionRol_UsuarioModificador" Association="Self.FK_MenuOperacionRol_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="MenuOperacionRol" EntitySet="MenuOperacionRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuRol_Rol" Association="Self.FK_MenuRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="MenuRol" EntitySet="MenuRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuRol_UsuarioCreador" Association="Self.FK_MenuRol_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="MenuRol" EntitySet="MenuRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuRol_UsuarioModificador" Association="Self.FK_MenuRol_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="MenuRol" EntitySet="MenuRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operacion_UsuarioCreador" Association="Self.FK_Operacion_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Operacion" EntitySet="Operacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operacion_UsuarioModificador" Association="Self.FK_Operacion_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Operacion" EntitySet="Operacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rol_UsuarioCreador" Association="Self.FK_Rol_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Rol" EntitySet="Rol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rol_UsuarioModificador" Association="Self.FK_Rol_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Rol" EntitySet="Rol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRol_Rol" Association="Self.FK_UsuarioRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_UsuarioCreador" Association="Self.FK_Usuario_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Usuario1" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_UsuarioModificador" Association="Self.FK_Usuario_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Usuario1" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioAplicacion_Usuario" Association="Self.FK_UsuarioAplicacion_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioAplicacion" EntitySet="UsuarioAplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioAplicacion_UsuarioCreador" Association="Self.FK_UsuarioAplicacion_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioAplicacion" EntitySet="UsuarioAplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioAplicacion_UsuarioModificador" Association="Self.FK_UsuarioAplicacion_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioAplicacion" EntitySet="UsuarioAplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRol_Usuario" Association="Self.FK_UsuarioRol_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRol_UsuarioCreador" Association="Self.FK_UsuarioRol_UsuarioCreador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRol_UsuarioModificador" Association="Self.FK_UsuarioRol_UsuarioModificador">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+    </AssociationSet>
+    <FunctionImport Name="PA_GetDataAcceso">
+      <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="page_init" Mode="In" Type="String" />
+      <Parameter Name="cant_page" Mode="In" Type="String" />
+      <Parameter Name="campo_orden" Mode="In" Type="String" />
+      <Parameter Name="tipo_orden" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_GetDataAplicacion">
+      <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="page_init" Mode="In" Type="String" />
+      <Parameter Name="cant_page" Mode="In" Type="String" />
+      <Parameter Name="campo_orden" Mode="In" Type="String" />
+      <Parameter Name="tipo_orden" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_GetDataCargo">
+      <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="page_init" Mode="In" Type="String" />
+      <Parameter Name="cant_page" Mode="In" Type="String" />
+      <Parameter Name="campo_orden" Mode="In" Type="String" />
+      <Parameter Name="tipo_orden" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_GetDataMenu">
+      <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="page_init" Mode="In" Type="String" />
+      <Parameter Name="cant_page" Mode="In" Type="String" />
+      <Parameter Name="campo_orden" Mode="In" Type="String" />
+      <Parameter Name="tipo_orden" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_GetDataMenuRolAplicacion">
+      <Parameter Name="AplicacionID" Mode="In" Type="String" />
+      <Parameter Name="RolesID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_GetDataRol">
+      <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="page_init" Mode="In" Type="String" />
+      <Parameter Name="cant_page" Mode="In" Type="String" />
+      <Parameter Name="campo_orden" Mode="In" Type="String" />
+      <Parameter Name="tipo_orden" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_GetDataUsuario">
+      <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="page_init" Mode="In" Type="String" />
+      <Parameter Name="cant_page" Mode="In" Type="String" />
+      <Parameter Name="campo_orden" Mode="In" Type="String" />
+      <Parameter Name="tipo_orden" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_GetDataUsuarioEvaluaciones">
+      <Parameter Name="search" Mode="In" Type="String" />
+      <Parameter Name="page_init" Mode="In" Type="String" />
+      <Parameter Name="cant_page" Mode="In" Type="String" />
+      <Parameter Name="campo_orden" Mode="In" Type="String" />
+      <Parameter Name="tipo_orden" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

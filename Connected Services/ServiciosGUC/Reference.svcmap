@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="9ccb06e5-6efa-4be0-804b-2c239fc54eaa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://200.110.153.209/securityservice/Main.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Main.disco" MetadataType="Disco" ID="3d1f4b96-7467-4ec0-b641-fb139dc6d305" SourceId="1" SourceUrl="http://tovawebapp02.grupotova.local/securityservice/Main.svc?disco" />
+    <MetadataFile FileName="Main.xsd" MetadataType="Schema" ID="68679f2a-8db5-411b-9eeb-b3427180d824" SourceId="1" SourceUrl="http://tovawebapp02.grupotova.local/securityservice/Main.svc?xsd=xsd0" />
+    <MetadataFile FileName="Main1.xsd" MetadataType="Schema" ID="ef92b091-4abf-4676-b345-b021e9a8959d" SourceId="1" SourceUrl="http://tovawebapp02.grupotova.local/securityservice/Main.svc?xsd=xsd1" />
+    <MetadataFile FileName="Main2.xsd" MetadataType="Schema" ID="0c403647-4cb4-4b7e-aff1-5a6772986375" SourceId="1" SourceUrl="http://tovawebapp02.grupotova.local/securityservice/Main.svc?xsd=xsd2" />
+    <MetadataFile FileName="Main.wsdl" MetadataType="Wsdl" ID="fc078e6f-3d96-4f5e-8310-eb6dc217ee7b" SourceId="1" SourceUrl="http://tovawebapp02.grupotova.local/securityservice/Main.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

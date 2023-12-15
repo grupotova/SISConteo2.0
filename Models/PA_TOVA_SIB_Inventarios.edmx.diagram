@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3931a227a390468cb9ff31318e4e5c8a" Name="Diagram1">
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.AF_LOG" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ajustes" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ajustes_Inventario_MERCH" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.AjustesProveedoresNacionales" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Archivos_AjustesManuales" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Archivos_ConteosManuales" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Bultos_Carga_Descarga_Posterior" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.BultosNoIdentificados" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.BultosSinMaestroArticulos" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ciclico_Producto" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ciclico_Ubicacion" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ciclico_UbicacionCodigo" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ciclico_Zonificacion" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ComplementosMuebleria" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.CondicionSugerencia_ConteoDiario" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoCiclico" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoCiclico_Auditoria" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoCiclico_Conteo" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoCiclico_DivisionesZonas" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoCiclico_UpcNoExiste" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoDiario" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoDiario_Analisis" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoDiario_Detalle" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoDiario_DetGruposAprobacionAjustes" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoDiario_GruposAprobacionAjustes" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inv_EstilosTmp" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inv_Upc_SinDoc" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Documentos" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Estados" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Sku" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_TiposAjustes" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_TiposConteo" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Upc" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ControlesCargaEnviados" Width="1.5" PointX="16.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.DepartamentosZonas" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.DepositoPiso" Width="1.5" PointX="16.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Detalle_Ajustes_Inventario_MERCH" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Detalle_Archivos_AjustesManuales" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Detalle_Archivos_ConteosManuales" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.DivisionesZonas" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.EntradasTemporales" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.EntradasTemporalesAutorizaciones" Width="1.5" PointX="8.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.EntradasTemporalesCalculos" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Estatus_ConteoDiario" Width="1.5" PointX="18.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Estatus_TareasConteoDiario" Width="1.5" PointX="18.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Inventario_Conteo" Width="1.5" PointX="12.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Inventario_DetalleConteo" Width="1.5" PointX="14.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.InventarioAntesTomaStevens" Width="1.5" PointX="16.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.InventarioAntesTomaStevensCaja" Width="1.5" PointX="18.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.InventarioDeposito" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.InventarioPiso" Width="1.5" PointX="2.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.JerarquiasMERCH" Width="1.5" PointX="20.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.LogGeneracion_Tareas_ConteoDiario" Width="1.5" PointX="20.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Mermas" Width="1.5" PointX="20.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.MotivosAjustes_ConteoDiario" Width="1.5" PointX="20.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.param_condicion" Width="1.5" PointX="20.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Parametros_Sugerencia_Conteo_Diario" Width="1.5" PointX="4.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.RegistroAuditorias" Width="1.5" PointX="6.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.sysdiagrams" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Tareas_ConteoDiario" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Tareas_Motivos" Width="1.5" PointX="8.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.TransaccionesVentasNoMarcadas" Width="1.5" PointX="22.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.UbicacionesTerminadas" Width="1.5" PointX="22.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.VentasNoProcesadas" Width="1.5" PointX="22.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.VentasNoProcesadas_Acciones" Width="1.5" PointX="16.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.VentasNoProcesadas_Recorrido" Width="1.5" PointX="22.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ajustes_SecuenciaArchivos" Width="1.5" PointX="18.75" PointY="23.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

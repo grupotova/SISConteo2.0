@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Busqueda";
+}
+
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <link href="css/cssform.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 944px;
+        }
+
+        .auto-style2 {
+            height: 51px;
+            width: 212px;
+        }
+
+        .auto-style3 {
+            height: 42px;
+        }
+
+        .auto-style5 {
+            height: 41px;
+        }
+
+        .auto-style6 {
+            height: 45px;
+            width: 384px;
+        }
+
+        .auto-style7 {
+            height: 41px;
+            width: 186px;
+        }
+
+        .auto-style10 {
+            height: 42px;
+            width: 186px;
+        }
+
+        .auto-style12 {
+            height: 42px;
+        }
+
+        .auto-style14 {
+            height: 47px;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    @model WebInventario2._0.Models.FormModels.BuscarModel
+    @using (Html.BeginForm("Buscar", "ConteoCiclico", FormMethod.Post)) { 
+        <div>
+            <table class="auto-style1">
+                <tr>
+                    <td class="lblencabezado">
+                        @Html.Label("Documento de Control")
+                    </td>
+                    <td class="txtencabezado">
+                        @Html.TextBoxFor(s=>s.documentoControl)
+                        <dx:ASPxTextBox ID="txt_Doccontrol_inventario" runat="server" Width="170px">
+                        </dx:ASPxTextBox>
+                    </td>
+                    <td class="auto-style14"></td>
+                    <td class="auto-style14"></td>
+                </tr>
+                <tr>
+                    <td class="lblencabezado">
+                        @Html.Label("Base")
+                    </td>
+                    <td class="auto-style9">
+                        @Html.TextBoxFor(s=>s._Base)
+                    </td>
+                    <td class="auto-style6"></td>
+                    <td class="auto-style6"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style7"></td>
+                    <td class="auto-style5">
+                        <input type="submit" value="Buscar">
+                    </td>
+                    <td class="auto-style12">
+                        <input type="button" value="Salir" onclick="location.href='@Url.Action("Salir","ConteoCiclico")'">
+
+                    </td>
+                    <td class="auto-style5">
+                    </td>
+                    <td class="auto-style5"></td>
+                </tr>
+
+
+            </table>
+            <div style="height: 33px; width: 1023px">
+                &nbsp;&nbsp; @Html.Label("", new { id = "lbl_Mensaje" })
+
+                &nbsp;&nbsp;&nbsp;
+
+            </div>
+
+        </div>
+    }
+    
+</body>
+</html>

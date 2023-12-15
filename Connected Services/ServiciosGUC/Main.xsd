@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://tovawebapp02.grupotova.local/securityservice/Main.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SecurityService" />
+  <xs:element name="Authenticate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codAplicacion" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthenticateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SecurityService" minOccurs="0" name="AuthenticateResult" nillable="true" type="q1:UserData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AccesoModulo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AplicacionID" type="xs:int" />
+        <xs:element minOccurs="0" name="Controlador" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Vista" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Roles" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AccesoModuloResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccesoModuloResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenuCompletoSB">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aplicacionID" type="xs:int" />
+        <xs:element minOccurs="0" name="roles" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ruta" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenuCompletoSBResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SecurityService" minOccurs="0" name="GetMenuCompletoSBResult" nillable="true" type="q2:UserData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenuCompletoSUM">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aplicacionID" type="xs:int" />
+        <xs:element minOccurs="0" name="roles" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ruta" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenuCompletoSUMResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SecurityService" minOccurs="0" name="GetMenuCompletoSUMResult" nillable="true" type="q3:UserData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCentroCostoUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UsuarioID" type="xs:int" />
+        <xs:element minOccurs="0" name="CajaMenuda" type="xs:int" />
+        <xs:element minOccurs="0" name="Base" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCentroCostoUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SecurityService" minOccurs="0" name="GetCentroCostoUsuarioResult" nillable="true" type="q4:CentroCostosData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCentrosCosto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CajaMenuda" type="xs:int" />
+        <xs:element minOccurs="0" name="Base" type="xs:int" />
+        <xs:element minOccurs="0" name="Todos" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCentrosCostoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SecurityService" minOccurs="0" name="GetCentrosCostoResult" nillable="true" type="q5:CentroCostosData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aplicacionID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rolesID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SecurityService" minOccurs="0" name="GetMenusResult" nillable="true" type="q6:ArrayOfApplicationMenu" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
