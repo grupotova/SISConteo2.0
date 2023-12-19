@@ -1,0 +1,213 @@
+﻿@{
+    ViewBag.Title = "_Layout";
+}
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Local Host -->
+    <!-- <script src="/js/jquery-3.1.1.min.js"></script> -->
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <link href="/js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/cssform.css" rel="stylesheet" />
+    <script src="/js/bootstrap/js/bootstrap.js"></script>
+    <script src="/js/jquery.backstretch.min.js"></script>
+
+    <!-- Remoto -->
+    <script src="/sisconteos/js/jquery-3.6.4.min.js"></script>
+    <link href="/sisconteos/js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="/sisconteos/css/cssform.css" rel="stylesheet" />
+    <script src="/sisconteos/js/bootstrap/js/bootstrap.js"></script>
+    <script src="/sisconteos/js/jquery.backstretch.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link href="/js/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        body, html {
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+
+        h1#hd1 {
+            color: white;
+            font-family: verdana;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        #d1 {
+            /* padding-bottom: 30px; */
+        }
+
+        .td1 {
+            width: 224px;
+            text-align: right;
+        }
+
+        .auto-style2 {
+            width: 262px;
+            height: 126px;
+        }
+
+        .auto-style3 {
+            width: 224px;
+            height: 126px;
+        }
+
+        .auto-style4 {
+            height: 126px;
+            width: 345px;
+        }
+
+        .auto-style9 {
+            /*width: 95%;*/
+            /*height: 130px;*/
+        }
+
+        .auto-style11 {
+            margin-left: 200px;
+        }
+
+        .auto-style15 {
+            height: 29px;
+        }
+
+
+        /** Menu */
+        .side-menu {
+            width: 260px;
+        }
+
+            .side-menu a {
+                color: black;
+                text-decoration: none;
+                font-size: 12px;
+            }
+
+            .side-menu > li {
+                position: relative;
+                display: block !important;
+                cursor: pointer;
+                margin: 5px 10px;
+                font-weight: bold;
+                border: 1px solid #808080
+            }
+
+                .side-menu > li > a {
+                    display: block;
+                    background-color: #DBDBDB;
+                    padding: 5px 10px;
+                }
+
+        .child_menu {
+            display: none;
+            font-weight: normal;
+        }
+
+            .child_menu > li {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+        .fa-desktop {
+            display: none;
+        }
+
+        .fa-chevron-down {
+            float: right;
+            text-align: center;
+            margin-top: 5px;
+            font-size: 10px;
+            min-width: inherit;
+            color: black;
+        }
+
+        .dxgvFocusedRow, .dxgvFocusedRow {
+            color: black !important
+        }
+
+        .LogoTopBar {
+            /*height: 100px;*/
+        }
+
+            .LogoTopBar img {
+                max-height: 120px !important;
+            }
+
+        .bgTovaTopbar {
+            background-color: #001931;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            // Ocultar padres sin hijos
+            $('.side-menu > li').each(function () {
+
+                // Verificar si existe un child_menu hijo
+                if (!$(this).children('.child_menu').children('li').length) {
+                    console.log("Eliminar padre");
+                    $(this).remove();
+                } else {
+                    console.log("Padre visible");
+                }
+            });
+
+            // Click y mostrar elemetos hijos
+            $('.side-menu > li').click(function () {
+                $(this).children('.child_menu').toggle();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="row LogoTopBar bgTovaTopbar mt-2 py-1 px-2 w-95 mx-auto">
+        <div class="col-sm-3" id="ImgLogoTova">
+            <img src="~/Images/banner_grupotova_azul.png" id="Image1" class="img-fluid">
+        </div>
+        <div class="col-sm-12 col-md-6 text-center align-self-center">
+            <h2 style="color: white">Sistema de Conteo</h2>
+        </div>
+        <div class="col-sm-3" id="ImgLogoConteo">
+            <img src="~/Images/AdminInv.jpg" id="Image2" class="img-fluid">
+        </div>
+    </div>
+
+    <div class="row bgTovaTopbar mb-2 py-1 px-2 w-95 mx-auto">
+        <div class="col-sm-3">
+            <a href="">INICIO</a>
+        </div>
+        <div class="col-sm-3">
+            @Html.Label("USUARIO")
+            &nbsp;
+            @Html.Label("USUARIOVAL")
+        </div>
+        <div class="col-sm-3 text-end">
+            @Html.Label("BASE")
+            &nbsp;
+            @Html.Label("BASE VAL")
+        </div>
+        <div class="col-sm-3 text-end">
+            <a href="">CERRAR SESION</a>
+        </div>
+    </div>
+
+    <form id="form1" runat="server">
+        <div class="mx-auto w-95" style="height: 500px">
+            @RenderBody()
+        </div>
+    </form>
+</body>
+</html>

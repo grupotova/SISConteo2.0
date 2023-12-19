@@ -8,16 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de conteo</title>
-    <script src="js/jquery-3.6.4.min.js"></script>
-    <link href="js/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="css/cssform.css" rel="stylesheet" />
-    <script src="js/bootstrap/js/bootstrap.js"></script>
-    <script src="js/jquery.backstretch.min.js"></script>
-    <link href="Content/Login/font-awesome.min.css" rel="stylesheet" />
-    <link href="Content/Login/form-elements.css" rel="stylesheet" />
-    <link href="Content/Login/azure.css" rel="stylesheet" />
-    <link href="Content/Login/style2.css" rel="stylesheet" />
-    <script src="js/scripts.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <link href="~/Scripts/bootstrap.js" rel="stylesheet" />
+    <link href="~/Scripts/css/cssform.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.backstretch.min.js"></script>
+    <link href="~/Scripts/Content/Login/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/Content/Login/form-elements.css" rel="stylesheet" />
+    <link href="~/Scripts/Content/Login/azure.css" rel="stylesheet" />
+    <link href="~/Scripts/Content/Login/style2.css" rel="stylesheet" />
+    <script src="~/Scripts/scripts.js"></script>
     <style type="text/css">
         #cmb_base {
             width: 100% !important;
@@ -73,9 +73,9 @@
                                         @Html.PasswordFor(s=>s.contrasenia)
                                     </div>
 
-                                    <input type="submit" value="Iniciar Sesion"/>
+                                    <input type="submit" value="Iniciar Sesion" class="btn btn-primary mx-auto w-100 my-3"/>
 
-                                    <div class="text-center my-2">
+                                    <div class="text-center my-2" style="display:none;">
                                        @Html.LabelFor(s=>s.mensaje)
                                     </div>
                                 </form>

@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Principal";
+}
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+
+</head>
+<body>
+    <ul class="nav side-menu flex-column">
+        @{
+            WebInventario2._0.Common.Acceso objeto = new WebInventario2._0.Common.Acceso();
+            String HtmlVinculos = objeto.GetMenuCompleto();
+        }
+        @Html.Raw(HtmlVinculos)
+    </ul>
+</body>
+</html>

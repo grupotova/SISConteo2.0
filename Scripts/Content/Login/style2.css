@@ -1,0 +1,13 @@
+th, td {
+   
+    text-align: left;
+}
+
+label {
+  
+  text-align: left;
+}
+
+#left {
+    float:left;
+    }

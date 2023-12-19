@@ -26,11 +26,11 @@ namespace WebInventario2._0.Controllers
             Acceso objeto = new Acceso();
 
             login = model.usuario;
-            pass = model.contrasenia;
+                pass = model.contrasenia;
 
             String mensaje = objeto.Autenticacion(login, pass,aplicacion);
             if (mensaje.Equals("OK")) {
-                return RedirectToAction("Busqueda","ConteoCiclico");
+                return RedirectToAction("Principal","login");
             }
             else{
                 model.mensaje = mensaje;
@@ -38,6 +38,9 @@ namespace WebInventario2._0.Controllers
 
             return RedirectToAction("Login","login");
 
+        }
+        public ActionResult Principal () {
+            return View();
         }
     }
 }

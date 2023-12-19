@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.ServiceModel.Channels;
 using System.Web;
+using WebInventario2._0.ServiciosGUC;
 
 namespace WebInventario2._0.Common
 {
@@ -58,6 +59,67 @@ namespace WebInventario2._0.Common
                 mensaje = ex.Message;
             }
             return mensaje;
+        }
+
+        public String GetMenuCompleto()
+        {
+            String listaAnidad = "";
+            ServiciosGUC.ServiceClient a = new ServiciosGUC.ServiceClient("BasicHttpBinding_IService");
+
+            String ruta = getUrl(HttpContext.Current.Request.Url.OriginalString);
+            String sAplicationId = sessionObj.getSession("AplicacionId");
+
+            if (sAplicationId.Equals("")) {
+                sAplicationId = "0";
+            }
+
+            String rol = sessionObj.getSession("RolId");
+            int AplicacionId = Int32.Parse(sAplicationId);
+            UserData obj = a.GetMenuCompletoSB(AplicacionId, rol, ruta);
+
+            foreach (Application app in obj.Applications)
+            {
+                listaAnidad = app.Menu;
+            }
+            return listaAnidad;
+        }
+
+        public String getUrl(String url)
+        {
+            String ruta = url;
+            String rutaaux = "";
+            int pos = 0;
+            int repeticiones = 4;
+            int cont = 1;
+            Char caracter = '/';
+
+            if (ruta.IndexOf("localhost") == -1)
+            {
+                repeticiones = 4;
+            }
+            else
+            {
+                repeticiones = 3;
+            }
+
+            for (int i = 0; i < ruta.Length; i++)
+            {
+                if (cont <= repeticiones)
+                {
+                    if (ruta[i] == caracter)
+                    {
+                        cont += 1;
+                    }
+                }
+                else
+                {
+                    pos = i;
+                    break;
+                }
+            }
+            rutaaux = ruta.Substring(0, pos - 1);
+
+            return rutaaux;
         }
     }
 }

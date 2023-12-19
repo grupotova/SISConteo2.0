@@ -1,0 +1,39 @@
+.top_content {
+    padding: 30px;
+}
+
+div.row {
+    padding: 10px;
+}
+
+div#botones {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+div.InicioSession {
+    padding-top: 30px;
+    text-align: center;
+}
+
+#formgroup1 {
+    /*
+    padding-left: 25px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    */
+}
+
+p.txtcentrado {
+    text-align: center;
+}
+
+.lblencabezado {
+    height: 47px;
+    width: 186px;
+}
+
+.txtencabezado {
+    height: 47px;
+    width: 224px;
+}
