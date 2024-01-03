@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Control_Inv_Upc_SinDoc
     {
+        [Key]
         public int sd_id { get; set; }
         public string sd_control_inventario { get; set; }
         public Nullable<System.DateTime> sd_fecha_contado { get; set; }

@@ -1,0 +1,95 @@
+﻿@{ 
+    Layout = "~/Views/shared/_LayoutMenu.cshtml";
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style type="text/css">
+        .auto-style2 {
+            width: 465px;
+        }
+
+        .auto-style3 {
+            width: 139px;
+        }
+
+        .auto-style9 {
+            height: 47px;
+            width: 186px;
+        }
+
+        .auto-style10 {
+            width: 148px;
+            height: 47px;
+        }
+
+        .auto-style11 {
+            width: 224px;
+            height: 47px;
+        }
+
+        .auto-style12 {
+            width: 194px;
+            height: 47px;
+        }
+
+
+        .mensaje {
+            width: 242px;
+            height: 29px;
+            text-align: center;
+        }
+
+        .auto-style13 {
+            width: 1215px;
+            height: 29px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    @Html.DevExpress().GetStyleSheets(
+new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+)
+    @Html.DevExpress().GetScripts(
+            new Script { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    <div>
+        <table class="dx-justification">
+            <tr>
+                <td class="auto-style10">
+                    @Html.Label("Documento de Control")
+                </td>
+                <td class="auto-style9">
+                    @Html.TextBox("txt_DocumentoControl")
+                </td>
+                <td class="auto-style11"></td>
+                <td class="auto-style12"></td>
+            </tr>
+            <tr>
+                <td class="auto-style10"> @Html.Label("Base")</td>
+                <td class="auto-style9"> @Html.TextBox("txt_base")</td>
+                <td class="auto-style11">
+                    <input type="button" value="Buscar" style="visibility:hidden" />
+                </td>
+                <td class="auto-style12">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="width: 1212px">
+        <table class="auto-style13">
+            <tr>
+                <td class="auto-style13">
+                    @Html.Label("REPORTE DE MODIFICACIONES")
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="height: 295px">
+
+        @Html.Action("GridView3Partial", "ConteoCiclico")
+
+    </div>
+</body>
+</html>

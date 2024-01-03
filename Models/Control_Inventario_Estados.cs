@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Control_Inventario_Estados
     {
+        [Key]
         public int cie_id { get; set; }
         public Nullable<short> cie_estados_inventario { get; set; }
     }

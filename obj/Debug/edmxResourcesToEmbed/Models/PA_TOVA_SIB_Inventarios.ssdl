@@ -174,6 +174,16 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
     <Property Name="UsuarioCreador" Type="int" Nullable="false" />
     <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ciclico_Usuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Ciclico_Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Nombre" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="Ciclico_Zonificacion">
     <Key>
       <PropertyRef Name="Id" />
@@ -277,6 +287,15 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
     <Property Name="Tipo_Ubicacion" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="Usuario_Id" Type="int" Nullable="false" />
     <Property Name="Fecha_Creada" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConteoCiclico_LogDocSync">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fec_Ini" Type="datetime" />
+    <Property Name="Fec_Fin" Type="datetime" />
+    <Property Name="Status" Type="int" />
   </EntityType>
   <EntityType Name="ConteoCiclico_UpcNoExiste">
     <Key>
@@ -446,6 +465,8 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
     <Property Name="sw_lock" Type="bit" />
     <Property Name="fecha_lock" Type="datetime" />
     <Property Name="Usuario_lock" Type="varchar" MaxLength="20" />
+    <Property Name="document_description" Type="nvarchar" MaxLength="60" />
+    <Property Name="grouping_label" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Control_Inventario_Estados">
     <Key>
@@ -459,6 +480,35 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
       <PropertyRef Name="cis_id" />
     </Key>
     <Property Name="cis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cis_control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_localizacion" Type="smallint" Nullable="false" />
+    <Property Name="cis_base" Type="int" Nullable="false" />
+    <Property Name="cis_sku_id" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+    <Property Name="cis_estilo_id" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="cis_estilo_cod" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_estilo_desc" Type="nvarchar" MaxLength="120" />
+    <Property Name="cis_talla" Type="nvarchar" MaxLength="17" />
+    <Property Name="cis_color" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_marca" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_hcod_grupo_estilo" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_hcod_grupo_estilo_desc" Type="nvarchar" MaxLength="40" />
+    <Property Name="cis_hcod_grupo_doc" Type="nvarchar" MaxLength="20" />
+    <Property Name="cis_hcod_grupo_doc_desc" Type="nvarchar" MaxLength="40" />
+    <Property Name="cis_inventario_teorico" Type="int" />
+    <Property Name="cis_costo" Type="decimal" Precision="14" Scale="2" />
+    <Property Name="cis_fecha_creacion" Type="datetime" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventario_Sku_20231226' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Control_Inventario_Sku_20231226">
+    <Key>
+      <PropertyRef Name="cis_id" />
+      <PropertyRef Name="cis_localizacion" />
+      <PropertyRef Name="cis_base" />
+      <PropertyRef Name="cis_sku_id" />
+      <PropertyRef Name="cis_estilo_id" />
+    </Key>
+    <Property Name="cis_id" Type="int" Nullable="false" />
     <Property Name="cis_control_inventario" Type="nvarchar" MaxLength="20" />
     <Property Name="cis_localizacion" Type="smallint" Nullable="false" />
     <Property Name="cis_base" Type="int" Nullable="false" />
@@ -497,6 +547,28 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
       <PropertyRef Name="ciu_id" />
     </Key>
     <Property Name="ciu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ciu_control_inventario" Type="nvarchar" MaxLength="20" />
+    <Property Name="ciu_localizacion" Type="smallint" />
+    <Property Name="ciu_base" Type="int" Nullable="false" />
+    <Property Name="ciu_sku_id" Type="decimal" Precision="13" Scale="0" Nullable="false" />
+    <Property Name="ciu_upc" Type="nvarchar" MaxLength="14" />
+    <Property Name="ciu_cantidad_conteo" Type="int" />
+    <Property Name="ciu_cantidad_conteo_mod" Type="int" />
+    <Property Name="ciu_comentario" Type="nvarchar" MaxLength="250" />
+    <Property Name="ciu_usuario_proceso" Type="nvarchar" MaxLength="14" />
+    <Property Name="ciu_fecha_proceso" Type="datetime" />
+    <Property Name="ciu_usuario_mod" Type="nvarchar" MaxLength="14" />
+    <Property Name="ciu_fecha_mod" Type="datetime" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventario_Upc_20231226' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Control_Inventario_Upc_20231226">
+    <Key>
+      <PropertyRef Name="ciu_id" />
+      <PropertyRef Name="ciu_base" />
+      <PropertyRef Name="ciu_sku_id" />
+    </Key>
+    <Property Name="ciu_id" Type="int" Nullable="false" />
     <Property Name="ciu_control_inventario" Type="nvarchar" MaxLength="20" />
     <Property Name="ciu_localizacion" Type="smallint" />
     <Property Name="ciu_base" Type="int" Nullable="false" />
@@ -1258,6 +1330,10 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
     <Parameter Name="base" Type="int" Mode="In" />
     <Parameter Name="control_inventario" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_ConsultadeDiferencias_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_ConsultaModificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="base" Type="int" Mode="In" />
     <Parameter Name="control_inventario" Type="varchar" Mode="In" />
@@ -1267,6 +1343,10 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
     <Parameter Name="control_inventario" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_ConsultaNoSurtidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="base" Type="int" Mode="In" />
+    <Parameter Name="control_inventario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsultaNoSurtidos_2023" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="base" Type="int" Mode="In" />
     <Parameter Name="control_inventario" Type="varchar" Mode="In" />
   </Function>
@@ -2412,6 +2492,7 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
     <EntitySet Name="ConteoCiclico_Auditoria" EntityType="Self.ConteoCiclico_Auditoria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConteoCiclico_Conteo" EntityType="Self.ConteoCiclico_Conteo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConteoCiclico_DivisionesZonas" EntityType="Self.ConteoCiclico_DivisionesZonas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConteoCiclico_LogDocSync" EntityType="Self.ConteoCiclico_LogDocSync" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConteoCiclico_UpcNoExiste" EntityType="Self.ConteoCiclico_UpcNoExiste" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConteoDiario" EntityType="Self.ConteoDiario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConteoDiario_Analisis" EntityType="Self.ConteoDiario_Analisis" Schema="dbo" store:Type="Tables" />
@@ -2467,6 +2548,51 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
     [Ajustes_SecuenciaArchivos].[Fecha_Mod] AS [Fecha_Mod], 
     [Ajustes_SecuenciaArchivos].[Usuario_Mod] AS [Usuario_Mod]
     FROM [dbo].[Ajustes_SecuenciaArchivos] AS [Ajustes_SecuenciaArchivos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Ciclico_Usuarios" EntityType="Self.Ciclico_Usuarios" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Ciclico_Usuarios].[Id] AS [Id], 
+    [Ciclico_Usuarios].[Nombre] AS [Nombre]
+    FROM [dbo].[Ciclico_Usuarios] AS [Ciclico_Usuarios]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Control_Inventario_Sku_20231226" EntityType="Self.Control_Inventario_Sku_20231226" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Control_Inventario_Sku_20231226].[cis_id] AS [cis_id], 
+    [Control_Inventario_Sku_20231226].[cis_control_inventario] AS [cis_control_inventario], 
+    [Control_Inventario_Sku_20231226].[cis_localizacion] AS [cis_localizacion], 
+    [Control_Inventario_Sku_20231226].[cis_base] AS [cis_base], 
+    [Control_Inventario_Sku_20231226].[cis_sku_id] AS [cis_sku_id], 
+    [Control_Inventario_Sku_20231226].[cis_estilo_id] AS [cis_estilo_id], 
+    [Control_Inventario_Sku_20231226].[cis_estilo_cod] AS [cis_estilo_cod], 
+    [Control_Inventario_Sku_20231226].[cis_estilo_desc] AS [cis_estilo_desc], 
+    [Control_Inventario_Sku_20231226].[cis_talla] AS [cis_talla], 
+    [Control_Inventario_Sku_20231226].[cis_color] AS [cis_color], 
+    [Control_Inventario_Sku_20231226].[cis_marca] AS [cis_marca], 
+    [Control_Inventario_Sku_20231226].[cis_hcod_grupo_estilo] AS [cis_hcod_grupo_estilo], 
+    [Control_Inventario_Sku_20231226].[cis_hcod_grupo_estilo_desc] AS [cis_hcod_grupo_estilo_desc], 
+    [Control_Inventario_Sku_20231226].[cis_hcod_grupo_doc] AS [cis_hcod_grupo_doc], 
+    [Control_Inventario_Sku_20231226].[cis_hcod_grupo_doc_desc] AS [cis_hcod_grupo_doc_desc], 
+    [Control_Inventario_Sku_20231226].[cis_inventario_teorico] AS [cis_inventario_teorico], 
+    [Control_Inventario_Sku_20231226].[cis_costo] AS [cis_costo], 
+    [Control_Inventario_Sku_20231226].[cis_fecha_creacion] AS [cis_fecha_creacion]
+    FROM [dbo].[Control_Inventario_Sku_20231226] AS [Control_Inventario_Sku_20231226]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Control_Inventario_Upc_20231226" EntityType="Self.Control_Inventario_Upc_20231226" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Control_Inventario_Upc_20231226].[ciu_id] AS [ciu_id], 
+    [Control_Inventario_Upc_20231226].[ciu_control_inventario] AS [ciu_control_inventario], 
+    [Control_Inventario_Upc_20231226].[ciu_localizacion] AS [ciu_localizacion], 
+    [Control_Inventario_Upc_20231226].[ciu_base] AS [ciu_base], 
+    [Control_Inventario_Upc_20231226].[ciu_sku_id] AS [ciu_sku_id], 
+    [Control_Inventario_Upc_20231226].[ciu_upc] AS [ciu_upc], 
+    [Control_Inventario_Upc_20231226].[ciu_cantidad_conteo] AS [ciu_cantidad_conteo], 
+    [Control_Inventario_Upc_20231226].[ciu_cantidad_conteo_mod] AS [ciu_cantidad_conteo_mod], 
+    [Control_Inventario_Upc_20231226].[ciu_comentario] AS [ciu_comentario], 
+    [Control_Inventario_Upc_20231226].[ciu_usuario_proceso] AS [ciu_usuario_proceso], 
+    [Control_Inventario_Upc_20231226].[ciu_fecha_proceso] AS [ciu_fecha_proceso], 
+    [Control_Inventario_Upc_20231226].[ciu_usuario_mod] AS [ciu_usuario_mod], 
+    [Control_Inventario_Upc_20231226].[ciu_fecha_mod] AS [ciu_fecha_mod]
+    FROM [dbo].[Control_Inventario_Upc_20231226] AS [Control_Inventario_Upc_20231226]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

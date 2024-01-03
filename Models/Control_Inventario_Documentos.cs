@@ -31,5 +31,7 @@ namespace WebInventario2._0.Models
         public Nullable<bool> sw_lock { get; set; }
         public Nullable<System.DateTime> fecha_lock { get; set; }
         public string Usuario_lock { get; set; }
+        public string document_description { get; set; }
+        public string grouping_label { get; set; }
     }
 }

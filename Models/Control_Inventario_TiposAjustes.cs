@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Control_Inventario_TiposAjustes
     {
+        [Key]
         public int id_tipo_ajuste { get; set; }
         public string descripcion { get; set; }
     }

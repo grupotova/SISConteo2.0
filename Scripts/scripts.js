@@ -1,11 +1,11 @@
 
 $(document).ready(function () {
 
-    var ruta = getAbsolutePath() + "images/Inicio/";
+    var ruta = getAbsolutePath() + "Images/Inicio/";
   
     //servidor local
     if (ruta.indexOf("localhost") != -1) {
-        ruta = "http://localhost:59555/images/Inicio/"
+        ruta = "http://localhost:59555/Images/Inicio/"
     } else {
         //ruta = "http://192.168.10.34/SisConteo/Images/Inicio/"
         ruta = "http://" + window.location.host + "/SisConteos/images/Inicio/"

@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Archivos_ConteosManuales
     {
+        [Key]
         public int Archivos_ConteosManuales_Id { get; set; }
         public string NomArchivo { get; set; }
         public string NomOrigArchivo { get; set; }

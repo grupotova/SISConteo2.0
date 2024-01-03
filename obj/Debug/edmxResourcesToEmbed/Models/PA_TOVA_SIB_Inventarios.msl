@@ -441,6 +441,8 @@
     <EntitySetMapping Name="Control_Inventario_Documentos">
       <EntityTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.Control_Inventario_Documentos">
         <MappingFragment StoreEntitySet="Control_Inventario_Documentos">
+          <ScalarProperty Name="grouping_label" ColumnName="grouping_label" />
+          <ScalarProperty Name="document_description" ColumnName="document_description" />
           <ScalarProperty Name="Usuario_lock" ColumnName="Usuario_lock" />
           <ScalarProperty Name="fecha_lock" ColumnName="fecha_lock" />
           <ScalarProperty Name="sw_lock" ColumnName="sw_lock" />
@@ -2942,6 +2944,94 @@
           <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
           <ScalarProperty Name="Nombre1" ColumnName="Nombre1" />
           <ScalarProperty Name="IdBase" ColumnName="IdBase" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ConteoCiclico_LogDocSync">
+      <EntityTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.ConteoCiclico_LogDocSync">
+        <MappingFragment StoreEntitySet="ConteoCiclico_LogDocSync">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Fec_Fin" ColumnName="Fec_Fin" />
+          <ScalarProperty Name="Fec_Ini" ColumnName="Fec_Ini" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ciclico_Usuarios">
+      <EntityTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.Ciclico_Usuarios">
+        <MappingFragment StoreEntitySet="Ciclico_Usuarios">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Control_Inventario_Sku_20231226">
+      <EntityTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.Control_Inventario_Sku_20231226">
+        <MappingFragment StoreEntitySet="Control_Inventario_Sku_20231226">
+          <ScalarProperty Name="cis_fecha_creacion" ColumnName="cis_fecha_creacion" />
+          <ScalarProperty Name="cis_costo" ColumnName="cis_costo" />
+          <ScalarProperty Name="cis_inventario_teorico" ColumnName="cis_inventario_teorico" />
+          <ScalarProperty Name="cis_hcod_grupo_doc_desc" ColumnName="cis_hcod_grupo_doc_desc" />
+          <ScalarProperty Name="cis_hcod_grupo_doc" ColumnName="cis_hcod_grupo_doc" />
+          <ScalarProperty Name="cis_hcod_grupo_estilo_desc" ColumnName="cis_hcod_grupo_estilo_desc" />
+          <ScalarProperty Name="cis_hcod_grupo_estilo" ColumnName="cis_hcod_grupo_estilo" />
+          <ScalarProperty Name="cis_marca" ColumnName="cis_marca" />
+          <ScalarProperty Name="cis_color" ColumnName="cis_color" />
+          <ScalarProperty Name="cis_talla" ColumnName="cis_talla" />
+          <ScalarProperty Name="cis_estilo_desc" ColumnName="cis_estilo_desc" />
+          <ScalarProperty Name="cis_estilo_cod" ColumnName="cis_estilo_cod" />
+          <ScalarProperty Name="cis_estilo_id" ColumnName="cis_estilo_id" />
+          <ScalarProperty Name="cis_sku_id" ColumnName="cis_sku_id" />
+          <ScalarProperty Name="cis_base" ColumnName="cis_base" />
+          <ScalarProperty Name="cis_localizacion" ColumnName="cis_localizacion" />
+          <ScalarProperty Name="cis_control_inventario" ColumnName="cis_control_inventario" />
+          <ScalarProperty Name="cis_id" ColumnName="cis_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Control_Inventario_Upc_20231226">
+      <EntityTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.Control_Inventario_Upc_20231226">
+        <MappingFragment StoreEntitySet="Control_Inventario_Upc_20231226">
+          <ScalarProperty Name="ciu_fecha_mod" ColumnName="ciu_fecha_mod" />
+          <ScalarProperty Name="ciu_usuario_mod" ColumnName="ciu_usuario_mod" />
+          <ScalarProperty Name="ciu_fecha_proceso" ColumnName="ciu_fecha_proceso" />
+          <ScalarProperty Name="ciu_usuario_proceso" ColumnName="ciu_usuario_proceso" />
+          <ScalarProperty Name="ciu_comentario" ColumnName="ciu_comentario" />
+          <ScalarProperty Name="ciu_cantidad_conteo_mod" ColumnName="ciu_cantidad_conteo_mod" />
+          <ScalarProperty Name="ciu_cantidad_conteo" ColumnName="ciu_cantidad_conteo" />
+          <ScalarProperty Name="ciu_upc" ColumnName="ciu_upc" />
+          <ScalarProperty Name="ciu_sku_id" ColumnName="ciu_sku_id" />
+          <ScalarProperty Name="ciu_base" ColumnName="ciu_base" />
+          <ScalarProperty Name="ciu_localizacion" ColumnName="ciu_localizacion" />
+          <ScalarProperty Name="ciu_control_inventario" ColumnName="ciu_control_inventario" />
+          <ScalarProperty Name="ciu_id" ColumnName="ciu_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_ConsultadeDiferencias_2023" FunctionName="PA_TOVA_SIB_InventariosModel.Store.sp_ConsultadeDiferencias_2023" />
+    <FunctionImportMapping FunctionImportName="sp_ConsultaNoSurtidos_2023" FunctionName="PA_TOVA_SIB_InventariosModel.Store.sp_ConsultaNoSurtidos_2023">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.sp_ConsultaNoSurtidos_2023_Result">
+          <ScalarProperty Name="sku_id" ColumnName="sku_id" />
+          <ScalarProperty Name="TotalPiso" ColumnName="TotalPiso" />
+          <ScalarProperty Name="doc_control_inventario" ColumnName="doc_control_inventario" />
+          <ScalarProperty Name="fecha_contado" ColumnName="fecha_contado" />
+          <ScalarProperty Name="base" ColumnName="base" />
+          <ScalarProperty Name="codigo_estilo" ColumnName="codigo_estilo" />
+          <ScalarProperty Name="descripcion_estilo" ColumnName="descripcion_estilo" />
+          <ScalarProperty Name="codigo_barra" ColumnName="codigo_barra" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="talla" ColumnName="talla" />
+          <ScalarProperty Name="division" ColumnName="division" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="subclase" ColumnName="subclase" />
+          <ScalarProperty Name="identificador" ColumnName="identificador" />
+          <ScalarProperty Name="cantidad_contada" ColumnName="cantidad_contada" />
+          <ScalarProperty Name="costo" ColumnName="costo" />
+          <ScalarProperty Name="costo_total" ColumnName="costo_total" />
+          <ScalarProperty Name="EstiloProveedor" ColumnName="EstiloProveedor" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="codcolor" ColumnName="codcolor" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

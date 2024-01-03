@@ -1,0 +1,86 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "ConteoCiclico", Action = "GridViewPartial" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+
+        settings.Styles.Header.BackColor = System.Drawing.Color.DarkGray;
+        settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+        settings.Styles.Header.Font.Size =11;
+        settings.Styles.Header.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.Header.Border.BorderWidth = 2;
+
+        settings.Styles.FilterRow.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.FilterRow.Border.BorderWidth = 2;
+
+
+        settings.Styles.Cell.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.Cell.Border.BorderWidth = 2;
+        settings.Styles.Cell.Wrap = DefaultBoolean.False;
+        settings.Styles.Cell.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+
+
+
+        settings.KeyFieldName = "cis_id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+
+        settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+        settings.SettingsDetail.ShowDetailRow = true;
+
+        settings.SetDetailRowTemplateContent(c => {
+            var index = c.VisibleIndex;
+            var key = c.KeyValue;
+            var localizacion = DataBinder.Eval(c.DataItem, "cis_localizacion");
+            var sku = DataBinder.Eval(c.DataItem, "cis_sku_id");
+            var documentoControl = new WebInventario2._0.Common.SessionData().getSession("docControl");
+            Html.RenderAction("GridDetallesConteoPartial", "ConteoCiclico", new { documentoControl = documentoControl, localizacion = localizacion, sku = sku });
+        });
+        /*    settings.PreRender = (sender, e) =>
+            {
+                ((MVCxGridView)sender).DetailRows.ExpandRow(0);
+            };*/
+
+
+        settings.Columns.Add(c=> {
+            c.FieldName = "cis_control_inventario";
+            c.Caption = "Doc Control";
+        });
+        settings.Columns.Add(c => {
+            c.FieldName = "cis_localizacion";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "cis_sku_id";
+            c.Visible = false;
+        });
+        settings.Columns.Add("cis_base","Base");
+        settings.Columns.Add("cis_estilo_cod","Codigo Estilo");
+        settings.Columns.Add("cis_talla","Talla");
+        settings.Columns.Add("cis_color","Color");
+        settings.Columns.Add("cis_estilo_desc","Descripcion Estilo");
+        settings.Columns.Add("cis_hcod_grupo_estilo","Herarquia Estilo");
+        settings.Columns.Add("cis_hcod_grupo_estilo_desc","Descripcion Herarquia");
+        settings.Columns.Add("cis_inventario_teorico","Inv.Teorico");
+        settings.Columns.Add("ciu_cantidad_conteo_modsum","Cant. Conteo");
+        settings.Columns.Add("diferencia","Diferencia");
+        settings.Columns.Add("costodiferencia","Costo Diferencia");
+
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+    }
+@grid.Bind(Model).GetHtml()

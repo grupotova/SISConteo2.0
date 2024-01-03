@@ -1,0 +1,49 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridArtSinInvAct";
+        settings.CallbackRouteValues = new { Controller = "ConteoCiclico", Action = "GridArtSinInvActPartial" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+     
+        settings.KeyFieldName = "control_inventario";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add("base");
+        settings.Columns.Add("control_inventario");
+        settings.Columns.Add("sku_id");
+        settings.Columns.Add("cod_estilo");
+        settings.Columns.Add("UPC");
+        settings.Columns.Add("desc_estilo");
+        settings.Columns.Add("COD_DIVISION");
+        settings.Columns.Add("COD_DEPARTAMENTO");
+        settings.Columns.Add("DESC_DEPARTAMENTO");
+        settings.Columns.Add("COD_CLASE");
+        settings.Columns.Add("DESC_CLASE");
+        settings.Columns.Add("COD_SUBCLASE");
+        settings.Columns.Add("DESC_SUBCLASE");
+        settings.Columns.Add("MARCA");
+        settings.Columns.Add("ESTILO_PROVEEDOR");
+        settings.Columns.Add("ubicacion");
+        settings.Columns.Add("cantidad");
+        settings.Columns.Add("inv_actual_MERCH");
+        
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

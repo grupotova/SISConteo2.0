@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class JerarquiasMERCH
     {
+        [Key]
         public string COD_DIVISION { get; set; }
         public string DESC_DIVISION { get; set; }
         public string COD_DEPARTAMENTO { get; set; }

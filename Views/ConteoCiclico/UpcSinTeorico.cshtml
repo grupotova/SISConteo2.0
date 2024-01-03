@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+} 
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .auto-style2 {
+            width: 465px
+        }
+
+        .auto-style3 {
+            width: 139px;
+        }
+
+        .auto-style9 {
+            height: 47px;
+            width: 186px;
+        }
+
+        .auto-style10 {
+            width: 148px;
+            height: 47px;
+        }
+
+        .auto-style11 {
+            width: 224px;
+            height: 47px;
+        }
+
+        .auto-style12 {
+            width: 194px;
+            height: 47px;
+        }
+    </style>
+</head>
+<body>
+    @model WebInventario2._0.Models.FormModels.BuscarModel
+    @using (Html.BeginForm())
+    {
+        <div>
+            <table class="dx-justification">
+                <tr>
+                    <td class="auto-style10">
+                        @Html.Label("Documento Control")
+                    </td>
+                    <td class="auto-style9">
+                        @Html.DisplayFor(s=>s.documentoControl)
+                    </td>
+                    <td class="auto-style11"></td>
+                    <td class="auto-style12"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style10"> @Html.Label("Base")</td>
+                    <td class="auto-style9"> @Html.DisplayFor(s=>s._Base)</td>
+                    <td class="auto-style11">
+                        <input type="button" value="Buscar" style="visibility:hidden" />
+                    </td>
+                    <td class="auto-style12"></td>
+                </tr>
+            </table>
+        </div>
+    }
+    <div>
+
+        @Html.Action("GridView1Partial", "ConteoCiclico")
+
+    </div>
+    <br />
+    <div style="height:46px">
+        <input type="button" value="Exportar a Excel" id="btn_ExportarDetalle" style="height:24px;width:70px;" />
+    </div>
+</body>
+
+</html>

@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class sysdiagrams
     {
+        [Key]
         public string name { get; set; }
         public int principal_id { get; set; }
         public int diagram_id { get; set; }

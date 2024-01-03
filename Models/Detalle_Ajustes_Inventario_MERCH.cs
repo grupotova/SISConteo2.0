@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Detalle_Ajustes_Inventario_MERCH
     {
+        [Key]
         public int id_ajuste_detalle { get; set; }
         public int id_ajuste { get; set; }
         public decimal sku_id { get; set; }

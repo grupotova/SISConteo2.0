@@ -1,0 +1,73 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "ConteoCiclico", Action = "GridView1Partial" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.KeyFieldName = "doc_control_inventario";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add("doc_control_inventario");
+        settings.Columns.Add("fecha_contado");
+        settings.Columns.Add("base");
+        settings.Columns.Add("estilo");
+        settings.Columns.Add("sku");
+        settings.Columns.Add("upc");
+        settings.Columns.Add("ubicacion");
+        settings.Columns.Add("cantidad_contada");
+        settings.Columns.Add("fecha_proceso");
+
+        settings.Toolbars.Add(tb => {
+
+            tb.Enabled = true;
+            tb.Position = GridToolbarPosition.Top;
+            tb.SettingsAdaptivity.Enabled = true;
+            tb.SettingsAdaptivity.EnableCollapseRootItemsToIcons = true;
+
+            tb.Items.Add(i =>
+            {
+                i.Text = "Export to";
+                i.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ActionsDownload16x16office2013;
+                i.BeginGroup = true;
+                i.AdaptivePriority = 1;
+                i.Items.Add(GridViewToolbarCommand.ExportToPdf);
+                i.Items.Add(GridViewToolbarCommand.ExportToDocx);
+                i.Items.Add(GridViewToolbarCommand.ExportToRtf);
+                i.Items.Add(GridViewToolbarCommand.ExportToXls).Text = "Export to XLS(DataAware)";
+                i.Items.Add(exportitem =>
+                {
+                    exportitem.Name = "CustomExportToXLS";
+                    exportitem.Text = "Export to XLS(WYSIWYG)";
+                    exportitem.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxls16x16office2013;
+                });
+                i.Items.Add(GridViewToolbarCommand.ExportToXlsx).Text = "Export to XLSX(DataAware)";
+                i.Items.Add(exportitem =>
+                {
+                    exportitem.Name = "CustomExportToXLSX";
+                    exportitem.Text = "Export to XLSX(WYSIWYG)";
+                    exportitem.Image.IconID = DevExpress.Web.ASPxThemes.IconID.ExportExporttoxlsx16x16office2013;
+                });
+            });
+
+        });
+
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

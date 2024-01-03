@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ConteoDiario_Detalle
     {
+        [Key]
         public int ConteoDiario_Detalle_ID { get; set; }
         public int ConteoDiario_ID { get; set; }
         public decimal sku_id { get; set; }

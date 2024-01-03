@@ -1,0 +1,64 @@
+﻿
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "detailGrid_" + ViewData["sku"];
+        settings.SettingsDetail.MasterGridName = "grid";
+        settings.CallbackRouteValues = new { Controller = "ConteoCiclico", Action = "GridDetallesConteoPartial",documentoControl = ViewData["documentoControl"] };
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+
+        settings.Styles.Header.BackColor = System.Drawing.Color.DarkGray;
+        settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+        settings.Styles.Header.Font.Size = 11;
+        settings.Styles.Header.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.Header.Border.BorderWidth = 2;
+
+        settings.Styles.FilterRow.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.FilterRow.Border.BorderWidth = 2;
+
+
+        settings.Styles.Cell.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.Cell.Border.BorderWidth = 2;
+        settings.Styles.Cell.Wrap = DefaultBoolean.False;
+        settings.Styles.Cell.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.KeyFieldName = "ciu_id";
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ciu_control_inventario";
+            c.Caption = "Doc Control Inventario";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ciu_localizacion";
+            c.Caption = "Localizacion";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ciu_sku_id";
+            c.Caption = "Sku_Id";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ciu_upc";
+            c.Caption = "Upc";
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ciu_cantidad_conteo_mod";
+            c.Caption = "Cantidad Conteo";
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

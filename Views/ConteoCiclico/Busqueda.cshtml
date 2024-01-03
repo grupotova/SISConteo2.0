@@ -1,12 +1,13 @@
 ﻿
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Busqueda";
 }
 
 <!DOCTYPE html>
 <html lang="es" translate="no">
 <head>
-    <link href="css/cssform.css" rel="stylesheet" />
+    <!--<link href="css/cssform.css" rel="stylesheet" />-->
     <style type="text/css">
         .auto-style1 {
             width: 944px;
@@ -57,7 +58,8 @@
 </head>
 <body>
     @model WebInventario2._0.Models.FormModels.BuscarModel
-    @using (Html.BeginForm("Buscar", "ConteoCiclico", FormMethod.Post)) { 
+    @using (Html.BeginForm("Buscar", "ConteoCiclico", FormMethod.Post))
+    {
         <div>
             <table class="auto-style1">
                 <tr>
@@ -65,9 +67,7 @@
                         @Html.Label("Documento de Control")
                     </td>
                     <td class="txtencabezado">
-                        @Html.TextBoxFor(s=>s.documentoControl)
-                        <dx:ASPxTextBox ID="txt_Doccontrol_inventario" runat="server" Width="170px">
-                        </dx:ASPxTextBox>
+                        @Html.TextBoxFor(s => s.documentoControl)
                     </td>
                     <td class="auto-style14"></td>
                     <td class="auto-style14"></td>
@@ -77,7 +77,7 @@
                         @Html.Label("Base")
                     </td>
                     <td class="auto-style9">
-                        @Html.TextBoxFor(s=>s._Base)
+                        @Html.TextBoxFor(s => s._Base)
                     </td>
                     <td class="auto-style6"></td>
                     <td class="auto-style6"></td>
@@ -85,28 +85,42 @@
                 <tr>
                     <td class="auto-style7"></td>
                     <td class="auto-style5">
-                        <input type="submit" value="Buscar">
-                    </td>
+                        <input type="submit" value="Buscar" id="btn_Buscar">
                     <td class="auto-style12">
                         <input type="button" value="Salir" onclick="location.href='@Url.Action("Salir","ConteoCiclico")'">
-
                     </td>
                     <td class="auto-style5">
                     </td>
                     <td class="auto-style5"></td>
                 </tr>
-
-
             </table>
             <div style="height: 33px; width: 1023px">
-                &nbsp;&nbsp; @Html.Label("", new { id = "lbl_Mensaje" })
+                @*TODO Hacer que el modal aparesca con el mensaje*@
+                @if (null != Model)
+                {
+                    if (!Model.mensaje.Equals(""))
+                    {
+                        <script>
+                            $('#ModalPopUp').modal('show');
+                        </script>
+                    }
+                }
 
-                &nbsp;&nbsp;&nbsp;
-
+                @Html.DisplayFor(s => s.mensaje)
             </div>
-
         </div>
     }
-    
+    <div class="modal fade" id="ModalPopUp" role="dialog">
+        <div class="modal-dialog err-pop" style="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="DivClose" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" style="text-align:center;">
+                    Put Your Html Element Here
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

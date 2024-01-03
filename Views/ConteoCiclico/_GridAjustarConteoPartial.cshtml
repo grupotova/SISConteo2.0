@@ -1,0 +1,69 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridAjustarConteo";
+        settings.CallbackRouteValues = new { Controller = "ConteoCiclico", Action = "GridAjustarConteoPartial" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+
+        settings.KeyFieldName = "Base";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Styles.Header.BackColor = System.Drawing.Color.DarkGray;
+        settings.Styles.Header.ForeColor = System.Drawing.Color.White;
+        settings.Styles.Header.Font.Size = 11;
+        settings.Styles.Header.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.Header.Border.BorderWidth = 2;
+
+        settings.Styles.FilterRow.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.FilterRow.Border.BorderWidth = 2;
+
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.Styles.Cell.Border.BorderStyle = System.Web.UI.WebControls.BorderStyle.Solid;
+        settings.Styles.Cell.Border.BorderWidth = 2;
+        settings.Styles.Cell.Wrap = DefaultBoolean.False;
+        settings.Styles.Cell.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add(c => {
+            c.FieldName = "Base";
+            c.Visible = false;
+        });
+        settings.Columns.Add(c =>{
+            c.FieldName = "Tipo";
+            c.Visible = false;
+        });
+        settings.Columns.Add(c => {
+            c.FieldName = "Identificador";
+            c.Caption = "Identificador";
+        });
+        settings.Columns.Add(c => {
+            c.FieldName = "CodigoBarra";
+            c.Caption = "UPC";
+        });
+        settings.Columns.Add(c => {
+            c.FieldName = "Conteo_ANTERIOR";
+            c.Caption = "Conteo Anterior";
+        });
+        settings.Columns.Add(c =>{
+            c.FieldName = "Conteo_NUEVO";
+            c.Caption = "Conteo Nuevo";
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

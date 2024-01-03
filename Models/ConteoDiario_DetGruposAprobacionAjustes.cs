@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ConteoDiario_DetGruposAprobacionAjustes
     {
+        [Key]
         public int Id_Grupo { get; set; }
         public int Rol_ID { get; set; }
     }

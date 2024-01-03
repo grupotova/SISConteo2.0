@@ -1,0 +1,195 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+    ViewBag.Title = "Conteo";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/Scripts/css/cssform.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            height: 26px;
+            width: 1098px;
+        }
+
+        .auto-style2 {
+            height: 26px;
+            width: 171px;
+        }
+
+        .auto-style4 {
+            height: 26px;
+            width: 194px;
+        }
+
+        .auto-style5 {
+            height: 57px;
+        }
+
+        .auto-style7 {
+            height: 47px;
+            width: 674px;
+        }
+
+        .auto-style8 {
+            height: 47px;
+            width: 292px;
+        }
+
+        .auto-style9 {
+            width: 131px;
+        }
+
+        .auto-style10 {
+            width: 115px;
+        }
+
+        .auto-style11 {
+            width: 141px;
+        }
+
+        .auto-style12 {
+            height: 26px;
+            width: 1096px;
+        }
+
+        .auto-style13 {
+            height: 57px;
+            width: 1089px;
+        }
+
+        .auto-style14 {
+            height: 57px;
+            width: 1195px;
+        }
+
+        .auto-style15 {
+            height: 57px;
+            width: 472px;
+        }
+
+        .auto-style16 {
+            height: 47px;
+            width: 1098px;
+        }
+
+        .auto-style17 {
+            height: 47px;
+            width: 472px;
+        }
+
+        .auto-style18 {
+            height: 47px;
+            width: 1089px;
+        }
+
+        .auto-style19 {
+            height: 47px;
+            width: 1195px;
+        }
+
+        .auto-style20 {
+            height: 57px;
+            width: 674px;
+        }
+
+        .auto-style21 {
+            height: 57px;
+            width: 292px;
+        }
+        .label-porcentajes {
+            height: 25px;
+            width: 173px;
+            color: #0066CC;
+            font-weight: bold;
+            border:solid;
+            font-size: 12px;
+            text-align:center;
+            border-color:black;
+            border-width:2px;
+        }
+        .lable-search-data {
+            height: 25px;
+            width: 173px;
+            border: solid;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            border-color: black;
+            border-width: 2px;
+        }
+        .div-porcentajes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+    @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @Html.DevExpress().GetScripts(
+            new Script { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @model WebInventario2._0.Models.FormModels.BuscarModel
+    @using (Html.BeginForm()) { 
+        <div style="margin-left:20px;">
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style7">
+                       <label>Documento de Control</label> 
+                    </td>
+                    <td class="auto-style8">
+                        <label class="lable-search-data">@Html.DisplayFor(s => s.documentoControl)</label> 
+                    </td>
+                    <td class="auto-style16"></td>
+                    <td class="auto-style17"></td>
+                    <td class="auto-style18"></td>
+                    <td class="auto-style19"></td>
+                    <td class="auto-style16"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style20">
+                        <label> @Html.Label("Base")</label> 
+                    </td>
+                    <td class="auto-style21">
+                        <label class="lable-search-data">@Html.DisplayFor(s => s._Base)</label> 
+                    </td>
+                <tr/>
+            </table>
+            <div class="div-porcentajes">
+                <table>
+                    <tr>
+                        <td>
+                            <label class="label-porcentajes">COSTO PISO : @Html.DisplayFor(s => s.CostoPiso)</label>
+                            <br />
+                            <label class="label-porcentajes">COSTO DEP :  @Html.DisplayFor(s => s.CostoDep)</label>
+                        </td>
+                        <td>
+                            <label class="label-porcentajes">PORC. PISO : @Html.DisplayFor(s => s.dporPiso) %</label>
+                            <br />
+                            <label class="label-porcentajes">PORC.DEP   : @Html.DisplayFor(s => s.dporDep) %</label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+    <br />
+    <div>
+        <div style="margin-left:20px;margin-right:20px;">
+
+            @Html.Action("GridViewPartial", "ConteoCiclico")
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+

@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Inventario_Conteo
     {
+        [Key]
         public int Inventario_Conteo_Id { get; set; }
         public int Base { get; set; }
         public System.DateTime Fecha_Inicio { get; set; }

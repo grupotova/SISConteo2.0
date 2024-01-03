@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tareas_Motivos
     {
+        [Key]
         public int Motivo_ID { get; set; }
         public string Descripcion { get; set; }
         public int Status_ID { get; set; }

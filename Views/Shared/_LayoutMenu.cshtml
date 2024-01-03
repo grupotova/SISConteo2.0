@@ -1,0 +1,178 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href="~/Scripts/css/cssform.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            height: 26px;
+            width: 1098px;
+        }
+
+        .auto-style2 {
+            height: 26px;
+            width: 171px;
+        }
+
+        .auto-style4 {
+            height: 26px;
+            width: 194px;
+        }
+
+        .auto-style5 {
+            height: 57px;
+        }
+
+        .auto-style7 {
+            height: 47px;
+            width: 674px;
+        }
+
+        .auto-style8 {
+            height: 47px;
+            width: 292px;
+        }
+
+        .auto-style9 {
+            width: 131px;
+        }
+
+        .auto-style10 {
+            width: 115px;
+        }
+
+        .auto-style11 {
+            width: 141px;
+        }
+
+        .auto-style12 {
+            height: 26px;
+            width: 1096px;
+        }
+
+        .auto-style13 {
+            height: 57px;
+            width: 1089px;
+        }
+
+        .auto-style14 {
+            height: 57px;
+            width: 1195px;
+        }
+
+        .auto-style15 {
+            height: 57px;
+            width: 472px;
+        }
+
+        .auto-style16 {
+            height: 47px;
+            width: 1098px;
+        }
+
+        .auto-style17 {
+            height: 47px;
+            width: 472px;
+        }
+
+        .auto-style18 {
+            height: 47px;
+            width: 1089px;
+        }
+
+        .auto-style19 {
+            height: 47px;
+            width: 1195px;
+        }
+
+        .auto-style20 {
+            height: 57px;
+            width: 674px;
+        }
+
+        .auto-style21 {
+            height: 57px;
+            width: 292px;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+    @Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @Html.DevExpress().GetScripts(
+            new Script { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    <div style="margin-left:20px;">
+
+        @Html.DevExpress().Menu(settings =>
+   {
+       settings.Name = "Menu";
+       settings.AllowSelectItem = false;
+       settings.Orientation = System.Web.UI.WebControls.Orientation.Horizontal;
+       settings.ShowPopOutImages = DefaultBoolean.True;
+
+
+       settings.Items.Add(item =>
+       {
+           item.Text = "Conteo del Documento de Control";
+           item.NavigateUrl = "~/ConteoCiclico/Conteo";
+
+       });
+       settings.Items.Add(item => {
+           item.Text = "UPC Sin Documento de Control";
+           item.NavigateUrl = "~/ConteoCiclico/UpcSinTeorico";
+       });
+
+
+       settings.Items.Add(item =>
+       {
+           item.Text = "Reportes";
+           item.Items.Add(subItem =>
+           {
+               subItem.Text = "Reporte No Surtidos";
+               subItem.NavigateUrl = "~/ConteoCiclico/NoSurtido";
+           });
+           item.Items.Add(subItem =>
+           {
+               subItem.Text = "Reporte de Modificaciones";
+               subItem.NavigateUrl = "~/ConteoCiclico/Modificaciones";
+           });
+           item.Items.Add(subItem =>
+           {
+               subItem.Text = "Reporte de diferencias";
+               subItem.NavigateUrl = "~/ConteoCiclico/Diferencias";
+           });
+           item.Items.Add(item=> {
+               item.Text = "Reportes de Articulos contados sin inventario Actual";
+               item.NavigateUrl = "~/ConteoCiclico/ContadoSinInventarioACtual"; ;
+           });
+       });
+       settings.Items.Add(item =>
+       {
+           item.Text = "Ajuste Post Conteo";
+           item.NavigateUrl = "~/ConteoCiclico/InventarioGenerado";
+       });
+       settings.Items.Add(item =>
+       {
+           item.Text = "Ingresar UPC Post Conteo";
+           item.NavigateUrl = "~/ConteoCiclico/IngresarNuevoUpc";
+       });
+   }).GetHtml()
+
+    </div>
+    <form id="form1" runat="server">
+        <div class="mx-auto w-95" style="height: 500px">
+            @RenderBody()
+        </div>
+    </form>
+</body>
+
+</html>
+

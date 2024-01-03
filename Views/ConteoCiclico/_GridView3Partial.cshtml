@@ -1,0 +1,51 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView3";
+        settings.CallbackRouteValues = new { Controller = "ConteoCiclico", Action = "GridView3Partial" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.KeyFieldName = "doc_control_inventario";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add("doc_control_inventario");
+        settings.Columns.Add("fecha_ajustado");
+        settings.Columns.Add("fecha_contado");
+        settings.Columns.Add("base");
+        settings.Columns.Add("codigo_estilo");
+        settings.Columns.Add("descripcion_estilo");
+        settings.Columns.Add("Sku_id");
+        settings.Columns.Add("Upc");
+        settings.Columns.Add("talla");
+        settings.Columns.Add("colorfoto");
+        settings.Columns.Add("marca");
+        settings.Columns.Add("EstiloProveedor");
+        settings.Columns.Add("codcolor");
+        settings.Columns.Add("color");
+        settings.Columns.Add("division");
+        settings.Columns.Add("subclase");
+        settings.Columns.Add("identificador");
+        settings.Columns.Add("saldo");
+        settings.Columns.Add("cantidad");
+        settings.Columns.Add("costo");
+        settings.Columns.Add("comentario");
+        settings.Columns.Add("fechacontado");
+        settings.Columns.Add("usuarioconto");
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

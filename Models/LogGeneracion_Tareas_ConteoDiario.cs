@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class LogGeneracion_Tareas_ConteoDiario
     {
+        [Key]
         public int LogGeneracion_Tareas_ConteoDiario_ID { get; set; }
         public Nullable<System.DateTime> Fec_Ini { get; set; }
         public Nullable<System.DateTime> Fec_Fin { get; set; }

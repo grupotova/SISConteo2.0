@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ConteoCiclico
     {
+        [Key]
         public int ConteoCiclico_Id { get; set; }
         public int Base_Id { get; set; }
         public int Usuario_Id { get; set; }

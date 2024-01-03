@@ -1,0 +1,283 @@
+﻿
+@{
+    ViewBag.Title = "IngresarNuevoUpc";
+    Layout = "~/Views/Shared/_LayoutMenu.cshtml";
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/cssform.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .auto-style1 {
+            height: 26px;
+            width: 694px;
+        }
+
+        .auto-style2 {
+            height: 26px;
+            width: 171px;
+        }
+
+        .auto-style4 {
+            height: 26px;
+            width: 194px;
+        }
+
+        .auto-style6 {
+            height: 24px;
+            width: 692px;
+        }
+
+        .auto-style8 {
+            height: 24px;
+            width: 923px;
+        }
+
+        .auto-style10 {
+            height: 29px;
+            width: 923px;
+        }
+
+        .auto-style14 {
+            height: 29px;
+        }
+
+        .auto-style15 {
+            width: 255px;
+            height: 29px;
+        }
+
+        .auto-style15center {
+            height: 29px;
+            text-align: center;
+        }
+
+        .verdanastyle {
+            font-family: Verdana;
+        }
+
+        .auto-style20 {
+            height: 26px;
+        }
+
+        .auto-style21 {
+            height: 29px;
+            width: 692px;
+        }
+
+        .auto-style22 {
+            width: 692px;
+        }
+
+        .auto-style23 {
+            height: 26px;
+            width: 692px;
+        }
+
+        .auto-style24 {
+            height: 29px;
+            width: 596px;
+        }
+
+        .auto-style25 {
+            width: 596px;
+        }
+
+        .auto-style26 {
+            height: 26px;
+            width: 255px;
+        }
+
+        .auto-style27 {
+            width: 255px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors }
+        )
+        @Html.DevExpress().GetScripts(
+                new Script { ExtensionSuite = ExtensionSuite.Editors }
+        )
+        @model WebInventario2._0.Models.FormModels.IngresarUPCNuevoModel
+        @using (Html.BeginForm())
+        {
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style8">
+                        <label>Documento Control</label>
+                    </td>
+                    <td class="auto-style15">
+                        <label>@Html.DisplayFor(s => s.documentoControl)</label>
+                    </td>
+                    <td class="auto-style6" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style14">
+                        <label>Base</label>
+                    </td>
+                    <td class="auto-style15">
+                        <label>@Html.DisplayFor(s => s._base)</label>
+                    </td>
+                    <td class="auto-style21" colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style14" colspan="2">
+                        <label>Ingrese el UPC y la Cantidad Contada : </label>
+                    </td>
+                    <td class="auto-style21" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style14">
+                    </td>
+                    <td class="auto-style15">
+
+                        @Html.DevExpress().RadioButtonList(settings =>
+                        {
+                            settings.Name = "RadioButtonList";
+                            settings.Properties.Items.Add("Piso");
+                            settings.Properties.Items.Add("Deposito");
+
+
+                            settings.Properties.RepeatDirection = System.Web.UI.WebControls.RepeatDirection.Horizontal;
+                            }).GetHtml()
+                    </td>
+                    <td class="auto-style22" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Ingrese UPC</label>
+                    </td>
+                    <td class="auto-style15">
+                        @Html.TextBoxFor(s=>s.UPC)
+
+                    </td>
+
+                    <td class="auto-style25">
+                        <input type="submit" value="Verificar UPC"/>
+                    </td>
+
+                    <td class="auto-style22">
+                        <input type="button" value="Limpiar Datos" id="btn_limpiarcampos" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style14">
+                        <label>Ingrese Cantidad Contada: </label>
+                    </td>
+
+                    <td class="auto-style15">
+                        @Html.TextBoxFor(s=>s.cantidad)
+                    </td>
+
+                    <td class="auto-style22" colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style14">
+                        <label>Cod.Estilo: </label>
+                    </td>
+
+                    <td class="auto-style15">
+                        @Html.TextBoxFor(s=>s.codEstilo)
+                    </td>
+
+                    <td class="auto-style21" colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style14">
+                        <label>Descripci&oacute;n</label>
+                    </td>
+                    <td class="auto-style15">
+                        @Html.TextBoxFor(s=>s.descripcion)
+                    </td>
+                    <td class="auto-style21" colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style14">
+                        <label>SKU</label>
+                    </td>
+                    <td class="auto-style15">
+                        @Html.TextBoxFor(s=>s.SKU)
+                    </td>
+                    <td class="auto-style21" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style10">
+                        <label>Identificador</label>
+                    </td>
+                    <td class="auto-style15">
+                        @Html.TextBoxFor(s=>s.identificador)
+                    </td>
+                    <td class="auto-style21" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style20">
+                    </td>
+                    <td class="auto-style26">
+                    </td>
+                    <td class="auto-style23" colspan="2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style15center" colspan="3">
+                        @Html.DisplayFor(s=>s.mensaje)
+                    </td>
+
+                    <td class="auto-style15center">
+                        &nbsp;
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="auto-style14"> </td>
+                    <td class="auto-style27"> </td>
+                    <td class="auto-style24">
+                        <input type="button" id="btn_guardarcodupc" value="Guardar" />
+                    </td>
+                    <td class="auto-style21">
+                        <input type="button"id="btn_salir" value="Salir" />
+                    </td>
+                </tr>
+            </table>
+        }
+
+    </div>
+    <div class="table" style="width: 84%; margin-right: auto">
+        <br />
+        <label>Upc de Documento de Control en Ubicacion PV0000 Y DP0000</label>
+        <br />
+    </div>
+    <div>
+
+        @Html.Action("GridIngresoUPCPartial", "ConteoCiclico")
+
+    </div>
+
+    <div>
+    </div>
+
+    <div>
+        &nbsp;<dx:ASPxLabel ID="ASPxLabel5" runat="server">
+        </dx:ASPxLabel>
+    </div>
+    <div>
+    </div>
+
+    <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</body>
+</html>

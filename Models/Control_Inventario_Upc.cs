@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Control_Inventario_Upc
     {
+        [Key]
         public int ciu_id { get; set; }
         public string ciu_control_inventario { get; set; }
         public Nullable<short> ciu_localizacion { get; set; }

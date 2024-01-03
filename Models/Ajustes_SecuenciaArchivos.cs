@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Ajustes_SecuenciaArchivos
     {
+        [Key]
         public int num_documento { get; set; }
         public System.DateTime Fecha_Crea { get; set; }
         public string Usuario_Crea { get; set; }

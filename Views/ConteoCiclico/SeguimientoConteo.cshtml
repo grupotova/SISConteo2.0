@@ -1,0 +1,115 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "SeguimientoConteo";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .auto-style2 {
+            width: 465px;
+        }
+
+        .auto-style3 {
+            width: 139px;
+        }
+
+        .auto-style9 {
+            height: 47px;
+            width: 186px;
+        }
+
+        .auto-style10 {
+            width: 148px;
+            height: 47px;
+        }
+
+        .auto-style11 {
+            width: 101px;
+            height: 47px;
+        }
+
+        .auto-style12 {
+            width: 296px;
+            height: 47px;
+        }
+
+
+        .mensaje {
+            width: 242px;
+            height: 29px;
+            text-align: center;
+        }
+
+        .auto-style13 {
+            width: 1215px;
+            height: 29px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    @Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @Html.DevExpress().GetScripts(
+            new Script { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @model WebInventario2._0.Models.FormModels.BuscarModel
+    @using (Html.BeginForm("Buscar", "ConteoCiclico", FormMethod.Post))
+    {
+        <div style="margin-left:20px;margin-right:20px;">
+            <table class="dx-justification">
+                <tr>
+                    <td class="auto-style10">
+                        @Html.Label("Documento de Control")
+                    </td>
+                    <td class="auto-style9">
+                        @Html.TextBoxFor(s => s.documentoControl)
+                    </td>
+                    <td class="auto-style11"></td>
+                    <td class="auto-style12"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style10"> @Html.Label("Base")</td>
+                    <td class="auto-style9"> @Html.TextBoxFor(s => s._Base)</td>
+                    <td class="auto-style11">
+                        <input type="submit" value="Buscar" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="width: 1212px">
+            <table class="auto_style13">
+                <tr>
+                    <td class="auto-style13">
+                        @Html.DisplayFor(s => s.mensaje)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="margin-left:20px;margin-right:20px;">
+
+            @Html.Action("GridSeguimientoPartial", "ConteoCiclico")
+
+        </div>
+        <br />
+        <div style="margin-right: 20px; margin-left :20px;justify-content:center;display:flex">
+            <table>
+                <tr>
+                    <td c>
+                        <input type="button" name="btn_ExportarExcel" value="Exportar Excel" />
+                    </td>
+                    <td><label style="width:30px;"></label></td>
+                    <td >
+                        <input type="button" name="btn_Generar" value="Generar" onclick="location.href='@Url.Action("Generar","ConteoCiclico")'"/>
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+    }
+</body>
+</html>

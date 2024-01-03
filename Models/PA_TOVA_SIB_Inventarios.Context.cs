@@ -94,6 +94,10 @@ namespace WebInventario2._0.Models
         public virtual DbSet<VentasNoProcesadas_Acciones> VentasNoProcesadas_Acciones { get; set; }
         public virtual DbSet<VentasNoProcesadas_Recorrido> VentasNoProcesadas_Recorrido { get; set; }
         public virtual DbSet<Ajustes_SecuenciaArchivos> Ajustes_SecuenciaArchivos { get; set; }
+        public virtual DbSet<ConteoCiclico_LogDocSync> ConteoCiclico_LogDocSync { get; set; }
+        public virtual DbSet<Ciclico_Usuarios> Ciclico_Usuarios { get; set; }
+        public virtual DbSet<Control_Inventario_Sku_20231226> Control_Inventario_Sku_20231226 { get; set; }
+        public virtual DbSet<Control_Inventario_Upc_20231226> Control_Inventario_Upc_20231226 { get; set; }
     
         [DbFunction("PA_TOVA_SIB_InventariosEntities", "fn_ConteoDiario_CostosxDoc")]
         public virtual IQueryable<fn_ConteoDiario_CostosxDoc_Result> fn_ConteoDiario_CostosxDoc(Nullable<int> conteoDiario_ID)
@@ -4513,6 +4517,32 @@ namespace WebInventario2._0.Models
                 new ObjectParameter("nombre_accion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spVentasNoProcesadasConsultaPorFechasYAccion_Result>("spVentasNoProcesadasConsultaPorFechasYAccion", fecha1Parameter, fecha2Parameter, nombre_accionParameter);
+        }
+    
+        public virtual int sp_ConsultadeDiferencias_2023(Nullable<int> @base, string control_inventario)
+        {
+            var baseParameter = @base.HasValue ?
+                new ObjectParameter("base", @base) :
+                new ObjectParameter("base", typeof(int));
+    
+            var control_inventarioParameter = control_inventario != null ?
+                new ObjectParameter("control_inventario", control_inventario) :
+                new ObjectParameter("control_inventario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ConsultadeDiferencias_2023", baseParameter, control_inventarioParameter);
+        }
+    
+        public virtual ObjectResult<sp_ConsultaNoSurtidos_2023_Result> sp_ConsultaNoSurtidos_2023(Nullable<int> @base, string control_inventario)
+        {
+            var baseParameter = @base.HasValue ?
+                new ObjectParameter("base", @base) :
+                new ObjectParameter("base", typeof(int));
+    
+            var control_inventarioParameter = control_inventario != null ?
+                new ObjectParameter("control_inventario", control_inventario) :
+                new ObjectParameter("control_inventario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ConsultaNoSurtidos_2023_Result>("sp_ConsultaNoSurtidos_2023", baseParameter, control_inventarioParameter);
         }
     }
 }

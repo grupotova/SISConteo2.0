@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "AjustarConteo";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style type="text/css">
+        .text-display-div {
+            padding:2px;
+        }
+        .buttons {
+            flex:none;
+            width:100px;
+        }
+        .labels {
+            padding-right : 10px;
+            font-weight: bold;
+            font-size : 14px;
+
+        }
+        .textboxes-dp {
+            border-style:solid;
+            border-width:1px;
+            border-color:darkgrey;
+        }
+</style>
+</head>
+<body>
+    @Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @Html.DevExpress().GetScripts(
+            new Script { ExtensionSuite = ExtensionSuite.GridView }
+    )
+    @model WebInventario2._0.Models.FormModels.BuscarModel
+    @using (Html.BeginForm())
+    {
+        <div style="margin-left:20px;margin-right:20px;margin-top:40px;display:flex;">
+            <table >
+                <tr>
+                    <td class="labels">
+                        <label>Documento de Control</label>
+                    </td>
+                    <td class="text-display-div">
+                        @Html.TextBoxFor(s => s.documentoControl, new { disabled = "disabled" , @class="textboxes-dp"})
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels">
+                        <label>Base</label>
+                    </td>
+                    <td class="text-display-div">
+                        @Html.TextBoxFor(s => s._Base, new { disabled = "disabled", @class = "textboxes-dp" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels">
+                        <label>Cod. Estilo</label>
+                    </td>
+                    <td class="text-display-div">
+                        @Html.TextBoxFor(s => s.cod_estilo, new { disabled = "disabled", @class = "textboxes-dp" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labels">
+                        <label>SKU</label>
+                    </td>
+                    <td class="text-display-div">
+                        @Html.TextBoxFor(s => s.sku, new { disabled = "disabled", @class = "textboxes-dp" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <br />
+        <div style="margin-right: 20px; margin-left :20px;justify-content:center;">
+
+            @Html.Action("GridAjustarConteoPartial", "ConteoCiclico")
+
+        </div>
+        <br /><br />
+        <div style="margin-right: 20px; margin-left :20px;justify-content:center;display:flex">
+            <table>
+                <tr>
+                    <td>
+                        <input type="button" name="btn_Guardar" value="Guardar" class="buttons" />
+                    </td>
+                    <td><label style="width:30px;"></label></td>
+                    <td>
+                        <input type="button" name="btn_Salir" value="Salir" class="buttons" onclick="location.href='@Url.Action("SeguimientoConteo","ConteoCiclico")'" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</body>
+</html>

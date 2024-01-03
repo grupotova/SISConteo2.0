@@ -72,6 +72,10 @@
         <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.VentasNoProcesadas_Acciones" Width="1.5" PointX="16.75" PointY="22.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.VentasNoProcesadas_Recorrido" Width="1.5" PointX="22.75" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ajustes_SecuenciaArchivos" Width="1.5" PointX="18.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.ConteoCiclico_LogDocSync" Width="1.5" PointX="21.75" PointY="23.75" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Ciclico_Usuarios" Width="1.5" PointX="23.75" PointY="23.75" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Sku_20231226" Width="1.5" PointX="25.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Upc_20231226" Width="1.5" PointX="0.75" PointY="25.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "_Layout";
 }
 
@@ -14,13 +14,12 @@
     <title></title>
 
     <!-- Local Host -->
-    <!-- <script src="/js/jquery-3.1.1.min.js"></script> -->
-    <script src="/js/jquery-3.6.4.min.js"></script>
-    <link href="/js/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/cssform.css" rel="stylesheet" />
-    <script src="/js/bootstrap/js/bootstrap.js"></script>
-    <script src="/js/jquery.backstretch.min.js"></script>
-
+     <script src="/js/jquery-3.1.1.min.js"></script> 
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/css/cssform.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.backstretch.min.js"></script>
     <!-- Remoto -->
     <script src="/sisconteos/js/jquery-3.6.4.min.js"></script>
     <link href="/sisconteos/js/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -29,10 +28,8 @@
     <script src="/sisconteos/js/jquery.backstretch.min.js"></script>
 
     <!-- Font Awesome -->
-    <link href="/js/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!--<link href="~/Scripts/Content/Login/font-awesome.min.css" rel="stylesheet" />-->
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
     <style type="text/css">
         body, html {
             padding: 0px !important;
@@ -171,9 +168,11 @@
             });
         });
     </script>
+    @Styles.Render("~/Content/DevExtremeBundle")
+    @Scripts.Render("~/Scripts/DevExtremeBundle")
 </head>
 <body>
-    <div class="row LogoTopBar bgTovaTopbar mt-2 py-1 px-2 w-95 mx-auto">
+    <div class="row LogoTopBar bgTovaTopbar mt-2 py-1 px-2 w-95 mx-auto" style="margin-left:20px;">
         <div class="col-sm-3" id="ImgLogoTova">
             <img src="~/Images/banner_grupotova_azul.png" id="Image1" class="img-fluid">
         </div>
@@ -185,9 +184,9 @@
         </div>
     </div>
 
-    <div class="row bgTovaTopbar mb-2 py-1 px-2 w-95 mx-auto">
+    <div class="row bgTovaTopbar mb-2 py-1 px-2 w-95 mx-auto" style="margin-left:20px;">
         <div class="col-sm-3">
-            <a href="">INICIO</a>
+            <a href="@Url.Action("Principal", "Login")">INICIO</a>
         </div>
         <div class="col-sm-3">
             @Html.Label("USUARIO")
@@ -200,14 +199,15 @@
             @Html.Label("BASE VAL")
         </div>
         <div class="col-sm-3 text-end">
-            <a href="">CERRAR SESION</a>
+            <a href="@Url.Action("Logout","Login")">CERRAR SESION</a>
         </div>
     </div>
 
-    <form id="form1" runat="server">
+    <!--<form id="form1" runat="server">
+        -->
         <div class="mx-auto w-95" style="height: 500px">
             @RenderBody()
         </div>
-    </form>
+        <!--</form>-->
 </body>
 </html>

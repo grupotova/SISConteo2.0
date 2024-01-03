@@ -462,6 +462,8 @@
     <Property Name="sw_lock" Type="Boolean" />
     <Property Name="fecha_lock" Type="DateTime" Precision="3" />
     <Property Name="Usuario_lock" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="document_description" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="grouping_label" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Control_Inventario_Estados">
     <Key>
@@ -2407,6 +2409,18 @@
       <Parameter Name="fecha2" Mode="In" Type="DateTime" />
       <Parameter Name="nombre_accion" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="ConteoCiclico_LogDocSync" EntityType="PA_TOVA_SIB_InventariosModel.ConteoCiclico_LogDocSync" />
+    <EntitySet Name="Ciclico_Usuarios" EntityType="PA_TOVA_SIB_InventariosModel.Ciclico_Usuarios" />
+    <EntitySet Name="Control_Inventario_Sku_20231226" EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Sku_20231226" />
+    <EntitySet Name="Control_Inventario_Upc_20231226" EntityType="PA_TOVA_SIB_InventariosModel.Control_Inventario_Upc_20231226" />
+    <FunctionImport Name="sp_ConsultadeDiferencias_2023">
+      <Parameter Name="base" Mode="In" Type="Int32" />
+      <Parameter Name="control_inventario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ConsultaNoSurtidos_2023" ReturnType="Collection(PA_TOVA_SIB_InventariosModel.sp_ConsultaNoSurtidos_2023_Result)">
+      <Parameter Name="base" Mode="In" Type="Int32" />
+      <Parameter Name="control_inventario" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_BuscarUpcenFoto_Result">
     <Property Type="String" Name="upc" Nullable="true" MaxLength="14" />
@@ -3680,5 +3694,91 @@
     <Property Type="String" Name="HoraFin" Nullable="false" MaxLength="5" />
     <Property Type="String" Name="Nombre1" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="IdBase" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="ConteoCiclico_LogDocSync">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fec_Ini" Type="DateTime" Precision="3" />
+    <Property Name="Fec_Fin" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Ciclico_Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Nombre" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_Sku_20231226">
+    <Key>
+      <PropertyRef Name="cis_id" />
+      <PropertyRef Name="cis_localizacion" />
+      <PropertyRef Name="cis_base" />
+      <PropertyRef Name="cis_sku_id" />
+      <PropertyRef Name="cis_estilo_id" />
+    </Key>
+    <Property Name="cis_id" Type="Int32" Nullable="false" />
+    <Property Name="cis_control_inventario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cis_localizacion" Type="Int16" Nullable="false" />
+    <Property Name="cis_base" Type="Int32" Nullable="false" />
+    <Property Name="cis_sku_id" Type="Decimal" Nullable="false" Precision="13" Scale="0" />
+    <Property Name="cis_estilo_id" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+    <Property Name="cis_estilo_cod" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cis_estilo_desc" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="cis_talla" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+    <Property Name="cis_color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cis_marca" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cis_hcod_grupo_estilo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cis_hcod_grupo_estilo_desc" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="cis_hcod_grupo_doc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cis_hcod_grupo_doc_desc" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="cis_inventario_teorico" Type="Int32" />
+    <Property Name="cis_costo" Type="Decimal" Precision="14" Scale="2" />
+    <Property Name="cis_fecha_creacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Control_Inventario_Upc_20231226">
+    <Key>
+      <PropertyRef Name="ciu_id" />
+      <PropertyRef Name="ciu_base" />
+      <PropertyRef Name="ciu_sku_id" />
+    </Key>
+    <Property Name="ciu_id" Type="Int32" Nullable="false" />
+    <Property Name="ciu_control_inventario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ciu_localizacion" Type="Int16" />
+    <Property Name="ciu_base" Type="Int32" Nullable="false" />
+    <Property Name="ciu_sku_id" Type="Decimal" Nullable="false" Precision="13" Scale="0" />
+    <Property Name="ciu_upc" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="ciu_cantidad_conteo" Type="Int32" />
+    <Property Name="ciu_cantidad_conteo_mod" Type="Int32" />
+    <Property Name="ciu_comentario" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ciu_usuario_proceso" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="ciu_fecha_proceso" Type="DateTime" Precision="3" />
+    <Property Name="ciu_usuario_mod" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="ciu_fecha_mod" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="sp_ConsultaNoSurtidos_2023_Result">
+    <Property Type="Decimal" Name="sku_id" Nullable="false" Precision="13" Scale="0" />
+    <Property Type="Int32" Name="TotalPiso" Nullable="true" />
+    <Property Type="String" Name="doc_control_inventario" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="fecha_contado" Nullable="true" />
+    <Property Type="Int32" Name="base" Nullable="false" />
+    <Property Type="String" Name="codigo_estilo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="descripcion_estilo" Nullable="true" MaxLength="120" />
+    <Property Type="String" Name="codigo_barra" Nullable="true" MaxLength="14" />
+    <Property Type="String" Name="color" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="talla" Nullable="true" MaxLength="17" />
+    <Property Type="String" Name="division" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="departamento" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="subclase" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="identificador" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="cantidad_contada" Nullable="false" />
+    <Property Type="Decimal" Name="costo" Nullable="true" Precision="14" Scale="2" />
+    <Property Type="Decimal" Name="costo_total" Nullable="false" Precision="38" Scale="2" />
+    <Property Type="String" Name="EstiloProveedor" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="marca" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="codcolor" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

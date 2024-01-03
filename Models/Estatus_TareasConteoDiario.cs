@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Estatus_TareasConteoDiario
     {
+        [Key]
         public int EstatusTareasConteoDiario_ID { get; set; }
         public string Descripcion { get; set; }
         public Nullable<System.DateTime> Fec_Creacion { get; set; }

@@ -11,9 +11,12 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.UI;
+
     public partial class ConteoDiario_GruposAprobacionAjustes
     {
+        [Key]
         public int Id_Grupo { get; set; }
         public string Nombre { get; set; }
         public string Comentarios { get; set; }

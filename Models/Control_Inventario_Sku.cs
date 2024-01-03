@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Control_Inventario_Sku
     {
+        [Key]
         public int cis_id { get; set; }
         public string cis_control_inventario { get; set; }
         public short cis_localizacion { get; set; }

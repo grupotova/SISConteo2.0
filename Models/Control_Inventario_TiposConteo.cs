@@ -11,9 +11,11 @@ namespace WebInventario2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Control_Inventario_TiposConteo
     {
+        [Key]
         public int id_tipo_conteo { get; set; }
         public string descripcion { get; set; }
         public int max_dias_proceso { get; set; }
