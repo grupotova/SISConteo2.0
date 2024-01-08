@@ -145,6 +145,7 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
           <Property Name="Producto_ID" Type="int" Nullable="false" />
           <Property Name="Ubicacion_ID" Type="int" Nullable="false" />
           <Property Name="Base_ID" Type="int" Nullable="false" />
+          <Property Name="Ubicacion" Type="varchar" MaxLength="50" />
           <Property Name="Codigo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
           <Property Name="Auditoria" Type="bit" Nullable="false" />
@@ -179,12 +180,9 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ajustes_Secuenci
           <Property Name="UsuarioCreador" Type="int" Nullable="false" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Ciclico_Usuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Ciclico_Usuarios">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Nombre" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
@@ -1319,6 +1317,14 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
           <Parameter Name="DocInventario" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_CargarJerarquiasMerch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Ciclico_AvanceSKU_Piezas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Base_Id" Type="int" Mode="In" />
+          <Parameter Name="Control_Inventario" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Ciclico_AvanceZona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Base_Id" Type="int" Mode="In" />
+          <Parameter Name="Control_Inventario" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_ConsultaConteoGenerado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="base" Type="int" Mode="In" />
           <Parameter Name="DocInventario" Type="varchar" Mode="In" />
@@ -2490,6 +2496,7 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
           <EntitySet Name="Ciclico_Producto" EntityType="Self.Ciclico_Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciclico_Ubicacion" EntityType="Self.Ciclico_Ubicacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciclico_UbicacionCodigo" EntityType="Self.Ciclico_UbicacionCodigo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciclico_Usuarios" EntityType="Self.Ciclico_Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciclico_Zonificacion" EntityType="Self.Ciclico_Zonificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComplementosMuebleria" EntityType="Self.ComplementosMuebleria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CondicionSugerencia_ConteoDiario" EntityType="Self.CondicionSugerencia_ConteoDiario" Schema="dbo" store:Type="Tables" />
@@ -2553,12 +2560,6 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
     [Ajustes_SecuenciaArchivos].[Fecha_Mod] AS [Fecha_Mod], 
     [Ajustes_SecuenciaArchivos].[Usuario_Mod] AS [Usuario_Mod]
     FROM [dbo].[Ajustes_SecuenciaArchivos] AS [Ajustes_SecuenciaArchivos]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Ciclico_Usuarios" EntityType="Self.Ciclico_Usuarios" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Ciclico_Usuarios].[Id] AS [Id], 
-    [Ciclico_Usuarios].[Nombre] AS [Nombre]
-    FROM [dbo].[Ciclico_Usuarios] AS [Ciclico_Usuarios]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Control_Inventario_Sku_20231226" EntityType="Self.Control_Inventario_Sku_20231226" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2768,6 +2769,7 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Procesado" Type="Boolean" Nullable="false" />
           <Property Name="FechaProcesado" Type="DateTime" Precision="3" />
+          <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Ciclico_Ubicacion">
           <Key>
@@ -5025,6 +5027,14 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
             <Parameter Name="base" Mode="In" Type="Int32" />
             <Parameter Name="control_inventario" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_Ciclico_AvanceZona" ReturnType="Collection(PA_TOVA_SIB_InventariosModel.sp_Ciclico_AvanceZona_Result)">
+            <Parameter Name="Base_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Control_Inventario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Ciclico_AvanceSKU_Piezas" ReturnType="Collection(PA_TOVA_SIB_InventariosModel.sp_Ciclico_AvanceSKU_Piezas_Result)">
+            <Parameter Name="Base_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Control_Inventario" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_BuscarUpcenFoto_Result">
           <Property Type="String" Name="upc" Nullable="true" MaxLength="14" />
@@ -6385,6 +6395,18 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
           <Property Type="String" Name="marca" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="codcolor" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="sp_Ciclico_AvanceZona_Result">
+          <Property Type="String" Name="Zona" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Ubicacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="1" />
+          <Property Type="Boolean" Name="Contada" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Ciclico_AvanceSKU_Piezas_Result">
+          <Property Type="Int32" Name="TotalPiezas" Nullable="true" />
+          <Property Type="Int32" Name="TotalPiezasContadas" Nullable="true" />
+          <Property Type="Int32" Name="TotalSKU" Nullable="true" />
+          <Property Type="Int32" Name="TotalSKUContados" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6521,6 +6543,7 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
           <EntitySetMapping Name="Ciclico_Producto">
             <EntityTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.Ciclico_Producto">
               <MappingFragment StoreEntitySet="Ciclico_Producto">
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Producto_ID" ColumnName="Producto_ID" />
                 <ScalarProperty Name="Ubicacion_ID" ColumnName="Ubicacion_ID" />
@@ -9423,6 +9446,26 @@ advertencia 6002: La tabla o vista 'PA_TOVA_SIB_Inventarios.dbo.Control_Inventar
                 <ScalarProperty Name="EstiloProveedor" ColumnName="EstiloProveedor" />
                 <ScalarProperty Name="marca" ColumnName="marca" />
                 <ScalarProperty Name="codcolor" ColumnName="codcolor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Ciclico_AvanceZona" FunctionName="PA_TOVA_SIB_InventariosModel.Store.sp_Ciclico_AvanceZona">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.sp_Ciclico_AvanceZona_Result">
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Contada" ColumnName="Contada" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Ciclico_AvanceSKU_Piezas" FunctionName="PA_TOVA_SIB_InventariosModel.Store.sp_Ciclico_AvanceSKU_Piezas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PA_TOVA_SIB_InventariosModel.sp_Ciclico_AvanceSKU_Piezas_Result">
+                <ScalarProperty Name="TotalPiezas" ColumnName="TotalPiezas" />
+                <ScalarProperty Name="TotalPiezasContadas" ColumnName="TotalPiezasContadas" />
+                <ScalarProperty Name="TotalSKU" ColumnName="TotalSKU" />
+                <ScalarProperty Name="TotalSKUContados" ColumnName="TotalSKUContados" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

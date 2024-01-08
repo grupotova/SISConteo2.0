@@ -4544,5 +4544,31 @@ namespace WebInventario2._0.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ConsultaNoSurtidos_2023_Result>("sp_ConsultaNoSurtidos_2023", baseParameter, control_inventarioParameter);
         }
+    
+        public virtual ObjectResult<sp_Ciclico_AvanceZona_Result> sp_Ciclico_AvanceZona(Nullable<int> base_Id, string control_Inventario)
+        {
+            var base_IdParameter = base_Id.HasValue ?
+                new ObjectParameter("Base_Id", base_Id) :
+                new ObjectParameter("Base_Id", typeof(int));
+    
+            var control_InventarioParameter = control_Inventario != null ?
+                new ObjectParameter("Control_Inventario", control_Inventario) :
+                new ObjectParameter("Control_Inventario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ciclico_AvanceZona_Result>("sp_Ciclico_AvanceZona", base_IdParameter, control_InventarioParameter);
+        }
+    
+        public virtual ObjectResult<sp_Ciclico_AvanceSKU_Piezas_Result> sp_Ciclico_AvanceSKU_Piezas(Nullable<int> base_Id, string control_Inventario)
+        {
+            var base_IdParameter = base_Id.HasValue ?
+                new ObjectParameter("Base_Id", base_Id) :
+                new ObjectParameter("Base_Id", typeof(int));
+    
+            var control_InventarioParameter = control_Inventario != null ?
+                new ObjectParameter("Control_Inventario", control_Inventario) :
+                new ObjectParameter("Control_Inventario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Ciclico_AvanceSKU_Piezas_Result>("sp_Ciclico_AvanceSKU_Piezas", base_IdParameter, control_InventarioParameter);
+        }
     }
 }
